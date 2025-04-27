@@ -8,7 +8,7 @@ format:
 editor: visual
 ---
 
-```{r}
+```{r setup}
 #| echo: false
 rm(list= ls())
 library(here)
@@ -333,7 +333,7 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
 
 ## A quale categoria del personale appartieni?
 
-```{r}
+```{r demo}
 plot_frequenze("1", "")
 ```
 
@@ -341,91 +341,91 @@ plot_frequenze("1", "")
 
 ## Quali metodi utilizzi nella tua ricerca?
 
-```{r}
+```{r scr1}
 plot_confronto_gruppi("2.1", "Quantitativo - Sperimentale")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?
 
-```{r}
+```{r scr2}
 plot_confronto_gruppi("2.2", "Quantitativo - Osservazionale")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?
 
-```{r}
+```{r scr3}
 plot_confronto_gruppi("2.3", "Quantitativo - Altro")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?
 
-```{r}
+```{r scr4}
 plot_confronto_gruppi("2.4", "Qualitativo")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?
 
-```{r}
+```{r scr5}
 plot_confronto_gruppi("2.5", "Teorico")
 ```
 
 ## Hai un account su OSF?
 
-```{r}
+```{r scr6}
 plot_confronto_gruppi("3", "")
 ```
 
 ## Hai mai sentito parlare della crisi di replicabilità?
 
-```{r}
+```{r scr7}
 plot_confronto_gruppi("4", "")
 ```
 
 ## Se sì, pensi sia un problema rilevante per il progresso scientifico?
 
-```{r}
+```{r scr8}
 plot_confronto_gruppi("5", "")
 ```
 
 ## Quanto ritieni che queste possano esserne le cause?
 
-```{r}
+```{r scr9}
 plot_likert_gruppi_molto("6.1", "Metodi obsoleti")
 ```
 
 ## Quanto ritieni che queste possano esserne le cause?
 
-```{r}
+```{r scr10}
 plot_likert_gruppi_molto("6.2", "Scarsa qualità dati")
 ```
 
 ## Quanto ritieni che queste possano esserne le cause?
 
-```{r}
+```{r scr11}
 plot_likert_gruppi_molto("6.3", "Mancanza validità esterna")
 ```
 
 ## Quanto ritieni che queste possano esserne le cause?
 
-```{r}
+```{r scr12}
 plot_likert_gruppi_molto("6.4", "Mancanza validità interna")
 ```
 
 ## Quanto ritieni che queste possano esserne le cause?
 
-```{r}
+```{r scr13}
 plot_likert_gruppi_molto("6.5", "Publication Bias")
 ```
 
 ## Quanto ritieni che queste possano esserne le cause?
 
-```{r}
+```{r scr14}
 plot_likert_gruppi_molto("6.6", "GDL Ricercatore")
 ```
 
 ## Quanto ritieni che queste possano esserne le cause?
 
-```{r}
+```{r scr15}
 plot_likert_gruppi_molto("6.7", "Frode")
 ```
 
@@ -433,103 +433,103 @@ plot_likert_gruppi_molto("6.7", "Frode")
 
 ## Hai mai sentito parlare di queste pratiche?
 
-```{r}
+```{r os1}
 plot_confronto_gruppi("7.1", "Pre-registrazione Ipotesi")
 ```
 
 ## Hai mai sentito parlare di queste pratiche?
 
-```{r}
+```{r os2}
 plot_confronto_gruppi("7.2", "Pre-registrazione Analisi")
 ```
 
 ## Hai mai sentito parlare di queste pratiche?
 
-```{r}
+```{r os3}
 plot_confronto_gruppi("7.3", "Registered Report")
 ```
 
 ## Hai mai utilizzato queste pratiche?
 
-```{r}
+```{r os4}
 plot_confronto_gruppi("8.1", "Pre-registrazione Ipotesi")
 ```
 
 ## Hai mai utilizzato queste pratiche?
 
-```{r}
+```{r os5}
 plot_confronto_gruppi("8.2", "Pre-registrazione Analisi")
 ```
 
 ## Hai mai utilizzato queste pratiche?
 
-```{r}
+```{r os6}
 plot_confronto_gruppi("8.3", "Registered Report")
 ```
 
 ## Hai mai utilizzato queste pratiche?
 
-```{r}
+```{r os7}
 plot_confronto_gruppi("8.4", "Open Materials")
 ```
 
 ## Hai mai utilizzato queste pratiche?
 
-```{r}
+```{r os8}
 plot_confronto_gruppi("8.5", "Open Code")
 ```
 
 ## Hai mai utilizzato queste pratiche?
 
-```{r}
+```{r os9}
 plot_confronto_gruppi("8.6", "Open Data")
 ```
 
 ## Queste pratiche possono contribuire al progresso della disciplina?
 
-```{r}
+```{r os10}
 plot_likert_gruppi_molto("9.1", "Pre-registrazione Ipotesi")
 ```
 
 ## Queste pratiche possono contribuire al progresso della disciplina?
 
-```{r}
+```{r os11}
 plot_likert_gruppi_molto("9.2", "Pre-registrazione Analisi")
 ```
 
 ## Queste pratiche possono contribuire al progresso della disciplina?
 
-```{r}
+```{r os12}
 plot_likert_gruppi_molto("9.3", "Registered Report")
 ```
 
 ## Userai una di queste pratiche nel tuo prossimo studio?
 
-```{r}
+```{r os13}
 plot_likert_gruppi_molto("10.1", "Pre-registrazione Ipotesi")
 ```
 
 ## Userai una di queste pratiche nel tuo prossimo studio?
 
-```{r}
+```{r os14}
 plot_likert_gruppi_molto("10.2", "Pre-registrazione Analisi")
 ```
 
 ## Userai una di queste pratiche nel tuo prossimo studio?
 
-```{r}
+```{r os15}
 plot_likert_gruppi_molto("10.3", "Open Materials")
 ```
 
 ## Userai una di queste pratiche nel tuo prossimo studio?
 
-```{r}
+```{r os16}
 plot_likert_gruppi_molto("10.4", "Open Code")
 ```
 
 ## Userai una di queste pratiche nel tuo prossimo studio?
 
-```{r}
+```{r os17}
 plot_likert_gruppi_molto("10.5", "Open Data")
 ```
 
@@ -537,72 +537,72 @@ plot_likert_gruppi_molto("10.5", "Open Data")
 
 ## Per la parte statistica, con chi ti confronti di solito?
 
-```{r}
+```{r mrb1}
 plot_confronto_gruppi("11.1", "Qualcuno del gruppo di ricerca")
 ```
 
 ## Per la parte statistica, con chi ti confronti di solito?
 
-```{r}
+```{r mrb2}
 plot_confronto_gruppi("11.2", "Esperto Esterno - Co-autore")
 ```
 
 ## Per la parte statistica, con chi ti confronti di solito?
 
-```{r}
+```{r mrb3}
 plot_confronto_gruppi("11.3", "Esperto esterno - NO Co-autore")
 ```
 
 ## Se pre-registrassi uno studio, avresti bisogno di aiuto?
 
-```{r}
+```{r mrb4}
 plot_likert_gruppi_completamente("12.1", "")
 ```
 
 ## Se pre-registrassi uno studio, saresti più sicuro dopo confronto col MRB?
 
-```{r}
+```{r mrb5}
 plot_likert_gruppi_completamente("12.2", "")
 ```
 
 ## Quanto un MRB sarebbe utile a:
 
-```{r}
+```{r mrb6}
 plot_likert_gruppi_completamente("13.1", "Essere riferimento in ambito metodologico")
 ```
 
 ## Quanto un MRB sarebbe utile a:
 
-```{r}
+```{r mrb7}
 plot_likert_gruppi_completamente("13.2", "Promuovere collaborazioni")
 ```
 
 ## Quanto un MRB sarebbe utile a:
 
-```{r}
+```{r mrb8}
 plot_likert_gruppi_completamente("13.3", "Prevenire sprechi")
 ```
 
 ## Quanto un MRB sarebbe utile a:
 
-```{r}
+```{r mrb9}
 plot_likert_gruppi_completamente("13.4", "Migliorare qualità ricerca")
 ```
 
 ## Quanto un MRB sarebbe utile a:
 
-```{r}
+```{r mrb10}
 plot_likert_gruppi_completamente("13.5", "Promuovere buone pratiche")
 ```
 
 ## Il MRB dovrebbe essere integrato al Comitato Etico?
 
-```{r}
+```{r mrb11}
 plot_confronto_gruppi("14", "")
 ```
 
 ## Parteciperesti ad una tavola rotonda relativa al MRB?
 
-```{r}
+```{r mrb12}
 plot_confronto_gruppi("16", "")
 ```
