@@ -1,0 +1,13 @@
+name: survey_app
+title: survey_app
+username: laurasita
+account: laurasita
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14515926
+bundleId: 10117372
+url: https://laurasita.shinyapps.io/survey_app/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|risposte_complete.csv
