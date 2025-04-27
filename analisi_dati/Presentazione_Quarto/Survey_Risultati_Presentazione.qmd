@@ -1,10 +1,11 @@
 ---
 title: "Risultati Survey - MRB"
 format: 
- revealjs:
-   center: true
-   logo: "Psicostat_LOGO.jpg"
-   embed-resources: true
+  revealjs:
+    center: true
+    logo: "Psicostat_LOGO.jpg"
+    embed-resources: true
+    slide-number: true
 editor: visual
 ---
 
@@ -601,7 +602,7 @@ plot_likert_gruppi_completamente("13.5", "Promuovere buone pratiche")
 plot_confronto_gruppi("14", "")
 ```
 
-## Parteciperesti ad una tavola rotonda relativa al MRB?
+## Riterresti utile una tavola rotonda relativa al MRB?
 
 ```{r mrb12}
 plot_confronto_gruppi("16", "")

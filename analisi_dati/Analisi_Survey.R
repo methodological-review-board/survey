@@ -9,7 +9,7 @@ library(dplyr)
 
 dataMRB <- read_excel(here("dati.xlsx"))
 dataMRB <- data.frame(dataMRB)
-View(dataMRB)
+#View(dataMRB)
 
 #################################### DATACLEANING
 
@@ -32,6 +32,7 @@ item_renamed <- matrix(data = c("Start date", "Finished", 1, 2.1, 2.2, 2.3, 2.4,
 
 colnames(datacleaned) <- as.character(datacleaned[1, ])  # Set first row as column names
 colnames(datacleaned) <- item_renamed
+#View(datacleaned)
 
 
 #################################### DESCRITTIVE AGGREGATE
@@ -253,6 +254,7 @@ plot_frequenze("16", "Partecipazione")
 datacleaned$Gruppo <- ifelse(datacleaned$"1" %in% c("PO, PA, RTD, RTT"), "Strutturati",
                              ifelse(datacleaned$"1" %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
 
+#View(datacleaned)
 
 ## Funzione per visualizzazione dati disaggregati (dicotomomiche)
   
