@@ -17,6 +17,9 @@ library(readxl)
 library(ggplot2)
 library(dplyr)
 library (patchwork)
+library(tm)
+library(wordcloud)
+library(jcolors)
 
 ######################################## Importazione Dataset
 
@@ -55,6 +58,7 @@ rownames (datacleaned) <- row_renamed
 ######################################## FUNZIONI DESCRITTIVE AGGREGATE
 
 ## Funzione per plot frequenze
+require(ggplot2)
 
 plot_frequenze <- function(colonna, titolo) {
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]), ]
@@ -181,9 +185,48 @@ plot_likert_completamente <- function(colonna, titolo) {
 
 ######################################## FUNZIONI DESCRITTIVE DISAGGREGATE
 
+
 ## Rinominare gruppi Strutturati e Non-strutturati
 datacleaned$Gruppo <- ifelse(datacleaned$"1" %in% c("PO, PA, RTD, RTT"), "Strutturati",
                              ifelse(datacleaned$"1" %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
+
+
+## Funzione per grafico tasso di risposta
+plot_tasso_risposta <- function(totali_strutturati, totali_non_strutturati, titolo = "") {
+  
+  # Calcolo delle risposte ricevute per ciascun gruppo
+  risposte_strutturati <- sum(datacleaned$Gruppo == "Strutturati", na.rm = TRUE)
+  risposte_non_strutturati <- sum(datacleaned$Gruppo == "Non-strutturati", na.rm = TRUE)
+  
+  # Creazione del dataframe per il grafico
+  df <- data.frame(
+    Gruppo = c("Strutturati", "Non-strutturati"),
+    Risposte = c(risposte_strutturati, risposte_non_strutturati),
+    Totali = c(totali_strutturati, totali_non_strutturati)
+  )
+  
+  # Calcolo del tasso di risposta
+  df$Percentuale <- (df$Risposte / df$Totali) * 100
+  
+  # Creazione del grafico
+  ggplot(df, aes(x = Gruppo, y = Percentuale, fill = Gruppo)) +
+    geom_col(width = 0.7) +
+    geom_text(aes(label = paste0("n=", Risposte)), vjust = -0.4, size = 4.5) +
+    labs(
+      title = titolo,
+      subtitle = paste("Totali: Strutturati =", totali_strutturati, ", Non-strutturati =", totali_non_strutturati),
+      x = "Gruppo",
+      y = "Percentuale di risposta"
+    ) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, 100)) +
+    theme_minimal(base_size = 13) +
+    theme(
+      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+      axis.title.x = element_text(face = "bold"),
+      axis.title.y = element_text(face = "bold"),
+      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+    )
+}
 
 
 ## Funzione per visualizzazione dati disaggregati (dicotomiche)
@@ -330,6 +373,15 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
 
 # DEMOGRAFICHE
 
+## Tasso di risposta alla survey
+
+nota. tolte le persone di psicostat
+
+```{r}
+plot_tasso_risposta(totali_strutturati = 65, totali_non_strutturati = 77)
+
+```
+
 ## A quale categoria del personale appartieni?
 
 ```{r demo}
@@ -401,7 +453,7 @@ plot_confronto_gruppi("2.5", "Teorico")
 ## Hai un account su OSF?
 
 ```{r scr3a}
-plot_frequenze("3", "Aggregato")
+plot_frequenze("3", "")
 ```
 
 ## Hai un account su OSF?
@@ -413,7 +465,7 @@ plot_confronto_gruppi("3", "")
 ## Hai mai sentito parlare della crisi di replicabilità?
 
 ```{r scr4a}
-plot_frequenze("4", "Aggregato")
+plot_frequenze("4", "")
 ```
 
 ## Hai mai sentito parlare della crisi di replicabilità?
@@ -425,7 +477,7 @@ plot_confronto_gruppi("4", "")
 ## Se sì, pensi sia un problema rilevante per il progresso scientifico?
 
 ```{r scr5a}
-plot_frequenze("5", "Aggregato")
+plot_frequenze("5", "")
 ```
 
 ## Se sì, pensi sia un problema rilevante per il progresso scientifico?
@@ -766,7 +818,7 @@ plot_confronto_gruppi("11.3", "Esperto esterno - NO Co-autore")
 ## Se pre-registrassi uno studio, avresti bisogno di aiuto?
 
 ```{r mrb12.1a}
-plot_likert_completamente("12.1", "Aggregato")
+plot_likert_completamente("12.1", "")
 ```
 
 ## Se pre-registrassi uno studio, avresti bisogno di aiuto?
@@ -778,7 +830,7 @@ plot_likert_gruppi_completamente("12.1", "")
 ## Se pre-registrassi uno studio, saresti più sicuro dopo confronto col MRB?
 
 ```{r mrb12.2a}
-plot_likert_completamente("12.2", "Aggregato")
+plot_likert_completamente("12.2", "")
 ```
 
 ## Se pre-registrassi uno studio, saresti più sicuro dopo confronto col MRB?
@@ -850,7 +902,7 @@ plot_likert_gruppi_completamente("13.5", "Promuovere buone pratiche")
 ## Il MRB dovrebbe essere integrato al Comitato Etico?
 
 ```{r mrb14a}
-plot_frequenze("14", "Aggregato")
+plot_frequenze("14", "")
 ```
 
 ## Il MRB dovrebbe essere integrato al Comitato Etico?
@@ -859,14 +911,38 @@ plot_frequenze("14", "Aggregato")
 plot_confronto_gruppi("14", "")
 ```
 
+## Quali elementi dovrebbe avere un MRB di dipartimento?
+
+```{r mrb15, out.width = "85%", fig.align = 'center'}
+
+exp_corpus <- VCorpus(VectorSource(datacleaned$`15`))
+exp_corpus <- tm_map(exp_corpus, content_transformer(tolower))
+exp_corpus <- tm_map(exp_corpus, removeWords, stopwords("it"))
+exp_corpus <- tm_map(exp_corpus, removeWords, c("appunto", "quindi", "alcuni", "aspetto", "corso", "modo", "solo", "penso"))
+exp_corpus <- tm_map(exp_corpus, removePunctuation)
+exp_corpus <- tm_map(exp_corpus, stripWhitespace)
+
+
+DTM <- DocumentTermMatrix(exp_corpus)
+
+freq <- sort(colSums(as.matrix(DTM)), decreasing = TRUE)
+word_freq <- data.frame(word = names(freq), freq = freq)
+
+
+par(mar=c(0,0,0,0))
+wordcloud( exp_corpus, random.order = FALSE, colors = jcolors::jcolors("pal12") )
+
+```
+
 ## Riterresti utile una tavola rotonda relativa al MRB?
 
 ```{r mrb16a}
-plot_frequenze("16", "Aggregato")
+plot_frequenze("16", "")
 ```
 
 ## Riterresti utile una tavola rotonda relativa al MRB?
 
 ```{r mrb16b}
 plot_confronto_gruppi("16", "")
+
 ```
