@@ -1,11 +1,15 @@
 ---
-title: "Risultati Survey - MRB"
+title: ""
 format: 
   revealjs:
     center: true
-    logo: "Psicostat_LOGO.jpg"
-    embed-resources: true
+    logo: "MRB_logo.png"
+    logo-height: 100px
     slide-number: true
+    css: "stile.css"
+    title-slide-class: "custom-title-slide"
+    title-slide-attributes:
+      data-background-color: "#ffffff"
 editor: visual
 ---
 
@@ -16,7 +20,7 @@ library(here)
 library(readxl)
 library(ggplot2)
 library(dplyr)
-library (patchwork)
+library(patchwork)
 library(tm)
 library(wordcloud)
 library(jcolors)
@@ -33,7 +37,7 @@ dataMRB <- data.frame(dataMRB)
 ## prime due righe ridondanti
 
 datacleaned <- dataMRB[-(c(1:12, 62, 67)), -(c(2:6,8:17))]
-datacleaned <- datacleaned [datacleaned$Finished == "True",]
+datacleaned <- datacleaned[datacleaned$Finished == "True", ]
 
 ## Rinominazione degli item ID
 
@@ -51,9 +55,12 @@ colnames(datacleaned) <- item_renamed
 ## Rinominazione righe
 row_renamed <- matrix(data = c(1:53), nrow = 53, ncol = 1)
 rownames(datacleaned) <- as.character(datacleaned[,1])
-rownames (datacleaned) <- row_renamed
+rownames(datacleaned) <- row_renamed
 
-
+## Creazione colonna 2 unendo 2.1, 2.2, 2.3
+datacleaned$`2` <- apply(datacleaned[, c("2.1", "2.2", "2.3")], 1, function(x) {
+  paste(na.omit(x), collapse = " | ")
+})
 
 ######################################## FUNZIONI DESCRITTIVE AGGREGATE
 
@@ -366,21 +373,30 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
 }
-
 ```
 
-# Analisi descrittive
+::: main-title
+Risultati di una survey sul Methodological Review Board
+:::
 
-# DEMOGRAFICHE
+::: subtitle-block
+Tavola Rotonda 27 giugno 2025\
+<br> [Laura Sità, Matteo Manente, Massimiliano Pastore]{.authors-line}
+:::
 
 ## Tasso di risposta alla survey
 
-nota. tolte le persone di psicostat
+::: section-label
+DEMOGRAFICHE
+:::
+
+I membri del DPSS parte del gruppo di ricerca Psicostat (5 persone) non sono compresi tra i rispondenti alla survey
 
 ```{r}
 plot_tasso_risposta(totali_strutturati = 65, totali_non_strutturati = 77)
-
 ```
+
+# INFORMAZIONI DEMOGRAFICHE
 
 ## A quale categoria del personale appartieni?
 
@@ -392,38 +408,22 @@ plot_frequenze("1", "")
 
 ## Quali metodi utilizzi nella tua ricerca?
 
+::: section-label
+SCREENING
+:::
+
 ```{r scr2.1a}
-plot_frequenze("2.1", "Quantitativo - Sperimentale ")
+plot_frequenze("2", "Quantitativo")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?
+
+::: section-label
+SCREENING
+:::
 
 ```{r scr2.1b}
-plot_confronto_gruppi("2.1", "Quantitativo - Sperimentale")
-```
-
-## Quali metodi utilizzi nella tua ricerca?
-
-```{r scr2.2a}
-plot_frequenze("2.2", "Quantitativo - Osservazionale ")
-```
-
-## Quali metodi utilizzi nella tua ricerca?
-
-```{r scr2.2b}
-plot_confronto_gruppi("2.2", "Quantitativo - Osservazionale")
-```
-
-## Quali metodi utilizzi nella tua ricerca?
-
-```{r scr2.3a}
-plot_frequenze("2.3", "Quantitativo - Altro ")
-```
-
-## Quali metodi utilizzi nella tua ricerca?
-
-```{r scr2.3b}
-plot_confronto_gruppi("2.3", "Quantitativo - Altro")
+plot_confronto_gruppi("2", "Quantitativo")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?

@@ -1,0 +1,63 @@
+/* Etichetta di sezione in basso a destra */
+.section-label {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  background-color: #25D366; /* verde WhatsApp */
+  color: white;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Titolo principale, centrato, multilinea elegante */
+.main-title {
+  font-size: 2.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.6em;
+  color: #222;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.2;
+}
+
+/* Sottotitolo (evento + data) */
+.subtitle-block {
+  font-size: 1.2em;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Riga con autori, centrata e compressa su una sola riga */
+.authors-line {
+  font-size: 0.80em;
+  display: inline-block;
+  margin-top: 0.4em;
+  white-space: nowrap;
+}
+
+/* Reveal title slide – mantiene compatibilità */
+.reveal .custom-title-slide h1 {
+  font-size: 2.8em;
+  font-weight: bold;
+  margin-bottom: 0.6em;
+  text-align: center;
+  color: #222;
+}
+
+/* Logo MRB in basso a sinistra */
+.reveal .slide-logo {
+  position: absolute !important;
+  bottom: 1em !important;
+  left: 1em !important;
+  top: auto !important;
+  right: auto !important;
+  max-height: 90px !important;
+  max-width: 90px !important;
+  z-index: 1000;
+}
