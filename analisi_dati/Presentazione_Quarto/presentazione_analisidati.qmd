@@ -57,11 +57,6 @@ row_renamed <- matrix(data = c(1:53), nrow = 53, ncol = 1)
 rownames(datacleaned) <- as.character(datacleaned[,1])
 rownames(datacleaned) <- row_renamed
 
-## Creazione colonna 2 unendo 2.1, 2.2, 2.3
-datacleaned$`2` <- apply(datacleaned[, c("2.1", "2.2", "2.3")], 1, function(x) {
-  paste(na.omit(x), collapse = " | ")
-})
-
 ######################################## FUNZIONI DESCRITTIVE AGGREGATE
 
 ## Funzione per plot frequenze
@@ -79,6 +74,7 @@ plot_frequenze <- function(colonna, titolo) {
   colnames(freq_table)[2] <- "Frequenza"
   freq_table$Percentuale <- (freq_table$Frequenza / sum(freq_table$Frequenza)) * 100
   N <- sum(freq_table$Frequenza)
+  max_y <- max(freq_table$Percentuale) + 10  # aggiunto margine per non tagliare etichette
 
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
     geom_col(width = 0.7, fill = "#4682B4", show.legend = FALSE) +
@@ -89,7 +85,7 @@ plot_frequenze <- function(colonna, titolo) {
       x = "Risposta",
       y = "Percentuale"
     ) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -98,7 +94,6 @@ plot_frequenze <- function(colonna, titolo) {
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
 }
-
 
 ## Funzione per likert "Per niente-Molto"
 
@@ -122,6 +117,7 @@ plot_likert_molto <- function(colonna, titolo) {
   colnames(freq_table)[2] <- "Frequenza"
   freq_table$Percentuale <- (freq_table$Frequenza / sum(freq_table$Frequenza)) * 100
   N <- sum(freq_table$Frequenza)
+  max_y <- max(freq_table$Percentuale) + 10  # margine per evitare taglio etichette
 
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
     geom_col(width = 0.7, fill = "#4682B4", show.legend = FALSE) +
@@ -133,7 +129,7 @@ plot_likert_molto <- function(colonna, titolo) {
       y = "Percentuale"
     ) +
     scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     theme_minimal(base_size = 15) +
     theme(
       plot.title = element_text(face = "bold", size = 17, hjust = 0.5),
@@ -142,7 +138,6 @@ plot_likert_molto <- function(colonna, titolo) {
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
 }
-
 
 
 ## Funzione likert "Per niente-Completamente"
@@ -167,6 +162,7 @@ plot_likert_completamente <- function(colonna, titolo) {
   colnames(freq_table)[2] <- "Frequenza"
   freq_table$Percentuale <- (freq_table$Frequenza / sum(freq_table$Frequenza)) * 100
   N <- sum(freq_table$Frequenza)
+  max_y <- max(freq_table$Percentuale) + 10  # margine per etichette
 
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
     geom_col(width = 0.7, fill = "#4682B4", show.legend = FALSE) +
@@ -178,7 +174,7 @@ plot_likert_completamente <- function(colonna, titolo) {
       y = "Percentuale"
     ) +
     scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     theme_minimal(base_size = 15) +
     theme(
       plot.title = element_text(face = "bold", size = 17, hjust = 0.5),
@@ -187,7 +183,6 @@ plot_likert_completamente <- function(colonna, titolo) {
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
 }
-
 
 
 ######################################## FUNZIONI DESCRITTIVE DISAGGREGATE
@@ -254,6 +249,7 @@ plot_confronto_gruppi <- function(colonna, titolo) {
   totali <- aggregate(Frequenza ~ Gruppo, data = freq_table, sum)
   freq_table <- merge(freq_table, totali, by = "Gruppo", suffixes = c("", "_Totale"))
   freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
+  max_y <- max(freq_table$Percentuale) + 10  # aggiunta margine
 
   ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
@@ -266,7 +262,7 @@ plot_confronto_gruppi <- function(colonna, titolo) {
       y = "Percentuale",
       fill = "Gruppo"
     ) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -302,6 +298,7 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
   totali <- aggregate(Frequenza ~ Gruppo, data = freq_table, sum)
   freq_table <- merge(freq_table, totali, by = "Gruppo", suffixes = c("", "_Totale"))
   freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
+  max_y <- max(freq_table$Percentuale) + 10  # aggiunto margine verticale
 
   ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
@@ -315,7 +312,7 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
       fill = "Gruppo"
     ) +
     scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -351,6 +348,7 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
   totali <- aggregate(Frequenza ~ Gruppo, data = freq_table, sum)
   freq_table <- merge(freq_table, totali, by = "Gruppo", suffixes = c("", "_Totale"))
   freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
+  max_y <- max(freq_table$Percentuale) + 10  # margine per etichette
 
   ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
@@ -364,7 +362,7 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
       fill = "Gruppo"
     ) +
     scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -373,10 +371,11 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
 }
+
 ```
 
 ::: main-title
-Risultati di una survey sul Methodological Review Board
+Risultati della survey sul Methodological Review Board
 :::
 
 ::: subtitle-block
@@ -413,7 +412,7 @@ SCREENING
 :::
 
 ```{r scr2.1a}
-plot_frequenze("2", "Quantitativo")
+plot_frequenze("2.1", "Quantitativo - Sperimentale")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?
@@ -423,7 +422,31 @@ SCREENING
 :::
 
 ```{r scr2.1b}
-plot_confronto_gruppi("2", "Quantitativo")
+plot_confronto_gruppi("2.1", "Quantitativo - Sperimentale")
+```
+
+## Quali metodi utilizzi nella tua ricerca?
+
+```{r scr2.2a}
+plot_frequenze("2.2", "Quantitativo - Osservazionale")
+```
+
+## Quali metodi utilizzi nella tua ricerca?
+
+```{r scr2.2b}
+plot_confronto_gruppi("2.2", "Quantitativo - Osservazionale")
+```
+
+## Quali metodi utilizzi nella tua ricerca?
+
+```{r scr2.3a}
+plot_frequenze("2.3", "Quantitativo - Altro")
+```
+
+## Quali metodi utilizzi nella tua ricerca?
+
+```{r scr2.3b}
+plot_confronto_gruppi("2.3", "Quantitativo - Altro")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?
@@ -913,7 +936,7 @@ plot_confronto_gruppi("14", "")
 
 ## Quali elementi dovrebbe avere un MRB di dipartimento?
 
-```{r mrb15, out.width = "85%", fig.align = 'center'}
+```{r mrb15, fig.align = 'center'}
 
 exp_corpus <- VCorpus(VectorSource(datacleaned$`15`))
 exp_corpus <- tm_map(exp_corpus, content_transformer(tolower))
