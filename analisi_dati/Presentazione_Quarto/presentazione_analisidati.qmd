@@ -4,7 +4,7 @@ authors: "L. Sità, M. Manente, A. Perugini, G. Calignano, E. Toffalini, I. Alfa
 format: 
   revealjs:
     center: true
-    logo: "MRB_logo.png"
+    logo: "logo_MRB.png"
     embed-resources: true
     slide-number: true
     footer: "Tavola Rotonda 27 giugno 2025"
