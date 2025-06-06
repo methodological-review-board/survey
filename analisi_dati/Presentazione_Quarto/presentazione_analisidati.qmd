@@ -1,16 +1,32 @@
 ---
-title: ""
+title: "Risultati della survey su Open Science e Methodological Review Board"
+authors: "L. Sità, M. Manente, A. Perugini, G. Calignano, E. Toffalini, I. Alfarone, T. Marci, M. Pastore, G. Altoè"
 format: 
   revealjs:
     center: true
     logo: "MRB_logo.png"
-    logo-height: 100px
+    embed-resources: true
     slide-number: true
-    css: "stile.css"
-    title-slide-class: "custom-title-slide"
-    title-slide-attributes:
-      data-background-color: "#ffffff"
-editor: visual
+    footer: "Tavola Rotonda 27 giugno 2025"
+    theme: simple
+cache: true
+include-in-header:
+  - text: |
+      <style>
+      #title-slide .title {
+        font-size: 2em;
+        color: #118811;
+      }
+      .slide-logo {
+        height: 60px !important;
+        max-height: none !important;
+        position: absolute !important;
+        bottom: 10px !important;
+        right: 10px !important;
+        top: unset !important;
+        left: unset !important;
+      }
+      </style>
 ---
 
 ```{r setup}
@@ -374,20 +390,7 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
 
 ```
 
-::: main-title
-Risultati della survey sul Methodological Review Board
-:::
-
-::: subtitle-block
-Tavola Rotonda 27 giugno 2025\
-<br> [Laura Sità, Matteo Manente, Massimiliano Pastore]{.authors-line}
-:::
-
 ## Tasso di risposta alla survey
-
-::: section-label
-DEMOGRAFICHE
-:::
 
 I membri del DPSS parte del gruppo di ricerca Psicostat (5 persone) non sono compresi tra i rispondenti alla survey
 
@@ -407,19 +410,11 @@ plot_frequenze("1", "")
 
 ## Quali metodi utilizzi nella tua ricerca?
 
-::: section-label
-SCREENING
-:::
-
 ```{r scr2.1a}
 plot_frequenze("2.1", "Quantitativo - Sperimentale")
 ```
 
 ## Quali metodi utilizzi nella tua ricerca?
-
-::: section-label
-SCREENING
-:::
 
 ```{r scr2.1b}
 plot_confronto_gruppi("2.1", "Quantitativo - Sperimentale")
