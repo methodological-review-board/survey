@@ -1,10 +1,9 @@
 ---
 title: "Risultati della survey su Open Science e Methodological Review Board"
 authors: "L. Sità, M. Manente, A. Perugini, G. Calignano, E. Toffalini, I. Alfarone, T. Marci, M. Pastore, G. Altoè"
-format: 
+format:
   revealjs:
     center: true
-    logo: "logo_MRB.png"
     embed-resources: true
     slide-number: true
     footer: "Tavola Rotonda 27 giugno 2025"
@@ -19,23 +18,7 @@ include-in-header:
         color: #118811;
       }
 
-      /* Logo MRB più grande (100px) su tutte le slide */
-      .reveal .slide-logo {
-        height: 100px !important;
-        max-height: none !important;
-        position: absolute !important;
-        bottom: 10px !important;
-        right: 10px !important;
-        top: unset !important;
-        left: unset !important;
-      }
-
-      /* Nasconde il logo MRB SOLO nella title slide, anche se RevealJS lo carica dopo */
-      .reveal #title-slide .slide-logo {
-        display: none !important;
-      }
-
-      /* Loghi unificati centrati solo nella title slide */
+      /* Logo alternativo centrato solo nella title slide */
       #title-slide::after {
         content: "";
         display: block;
@@ -43,7 +26,7 @@ include-in-header:
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        height: 90px;
+        height: 150px;
         margin-top: 1.5em;
       }
       </style>
@@ -985,6 +968,12 @@ plot_confronto_gruppi("16", "")
 
 ```
 
-## Slide conclusiva 
+## 🔑 Collaboration is the key 
 
-qui si trova la presentazione
+<br>
+
+Presentazione e materiale completo alla mia [pagina github](https://github.com/laurasitaunipd/mrb/tree/main/analisi_dati)
+
+<br><br><br>
+
+![](logo_UNITI.png){fig-align="center"}
