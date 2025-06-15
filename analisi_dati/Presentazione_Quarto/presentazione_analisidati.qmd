@@ -1,6 +1,6 @@
 ---
-title: "Risultati della survey su Open Science e Methodological Review Board"
-authors: "L. Sità, M. Manente, A. Perugini, G. Calignano, E. Toffalini, I. Alfarone, T. Marci, M. Pastore, G. Altoè"
+title: "Risultati della survey su<br> Open Science e Methodological Review Board"
+authors: "L. Sità, M. Manente, A. Perugini, G. Calignano, E. Toffalini, \\ I. Alfarone, T. Marci, M. Pastore, G. Altoè"
 format:
   revealjs:
     center: true
@@ -28,6 +28,11 @@ include-in-header:
         background-size: contain;
         height: 150px;
         margin-top: 1.5em;
+      }
+
+      /* Ridimensionamento titoli h2 */
+      .reveal h2 {
+        font-size: 1.2em !important;
       }
       </style>
 ---
@@ -97,7 +102,7 @@ plot_frequenze <- function(colonna, titolo) {
 
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
     geom_col(width = 0.7, fill = "#4682B4", show.legend = FALSE) +
-    geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 4.5) +
+    geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 6) +
     labs(
       title = titolo,
       subtitle = paste("N =", N),
@@ -395,11 +400,24 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
 
 ## Tasso di risposta alla survey
 
-I membri del DPSS parte del gruppo di ricerca Psicostat (5 persone) non sono compresi tra i rispondenti alla survey
-
 ```{r}
 plot_tasso_risposta(totali_strutturati = 65, totali_non_strutturati = 77)
 ```
+
+::: {style="font-size: 0.50em; text-align: center;"}
+I cinque membri del DPSS affiliati al gruppo di ricerca Psicostat non risultano tra i partecipanti alla survey.
+:::
+
+<br>
+
+# Contenuto della survey
+
+<br>
+
+-   [Informazioni demografiche](#INFORMAZIONI%20DEMOGRAFICHE)
+-   [Screening](#SCREENING)
+-   [Pratiche di Open Science](#OPEN%20SCIENCE)
+-   [Opinioni sul Methodological Review Board](#MRB)
 
 # INFORMAZIONI DEMOGRAFICHE
 
@@ -409,7 +427,7 @@ plot_tasso_risposta(totali_strutturati = 65, totali_non_strutturati = 77)
 plot_frequenze("1", "")
 ```
 
-# SCREENING
+# SCREENING {#screening}
 
 ## Quali metodi utilizzi nella tua ricerca?
 
@@ -798,7 +816,7 @@ plot_likert_molto("10.5", "Open Data ")
 plot_likert_gruppi_molto("10.5", "Open Data")
 ```
 
-# MRB
+# Methodological<br>Review Board (MRB) {#mrb}
 
 ## Per la parte statistica, con chi ti confronti di solito?
 
@@ -968,11 +986,11 @@ plot_confronto_gruppi("16", "")
 
 ```
 
-## 🔑 Collaboration is the key 
+## 🔑 Collaboration is the key
 
 <br>
 
-Presentazione e materiale completo alla mia [pagina github](https://github.com/laurasitaunipd/mrb/tree/main/analisi_dati)
+Presentazione e materiale completo alla [pagina del MRB](https://github.com/laurasitaunipd/mrb/tree/main/analisi_dati)
 
 <br><br><br>
 
