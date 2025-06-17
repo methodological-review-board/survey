@@ -26,12 +26,15 @@ The `survey` folder includes:
 You can access the original survey here:  
 🔗 https://unipadova.qualtrics.com/jfe/form/SV_9NYvbilMLe7TGNU
 
+You can visualize the Quarto presentation here:
+🔗 https://laurasitaunipd.github.io/mrb/survey/data_analysis.html
+
 ---
 
 ## 👤 Contact
 
 For any questions or clarifications, feel free to contact:  
-**Laura Sitò** – _University of Padua_  
+**Laura Sità** – _University of Padua_  
 📧 laura.sita@studenti.unipd.it
 
 ---
