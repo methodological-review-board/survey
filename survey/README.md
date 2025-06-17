@@ -26,7 +26,7 @@ The `survey` folder includes:
 You can access the original survey here:  
 🔗 https://unipadova.qualtrics.com/jfe/form/SV_9NYvbilMLe7TGNU
 
-You can visualize the Quarto presentation here:
+You can visualize the Quarto presentation here:  
 🔗 https://laurasitaunipd.github.io/mrb/survey/data_analysis.html
 
 ---
