@@ -1,4 +1,4 @@
-# 🧪 Survey Results on Open Science and the MRB
+# Results of the Survey on Open Science practices and the Methodological Review Board
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 ![R >= 4.2.0](https://img.shields.io/badge/R-%3E%3D%204.2.0-blue)
