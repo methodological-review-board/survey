@@ -1,0 +1,4 @@
+^renv$
+^renv\.lock$
+^survey\.Rproj$
+^\.Rproj\.user$
