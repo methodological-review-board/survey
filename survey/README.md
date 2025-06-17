@@ -34,7 +34,7 @@ You can visualize the Quarto presentation here:
 ## 👤 Contact
 
 For any questions or clarifications, feel free to contact:  
-**Laura Sità** – _University of Padua_  
+**Laura Sità** – _University of Padova_  
 📧 laura.sita@studenti.unipd.it
 
 ---
