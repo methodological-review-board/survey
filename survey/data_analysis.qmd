@@ -37,7 +37,6 @@ include-in-header:
 ```{r setup}
 #| echo: false
 rm(list= ls())
-library(here)
 library(readxl)
 library(ggplot2)
 library(dplyr)
@@ -49,7 +48,7 @@ library(datadictionary)
 
 ######################################## Importazione Dataset
 
-dataMRB <- read_excel(here("dati.xlsx"))
+dataMRB <- read_excel("dati.xlsx")
 dataMRB <- data.frame(dataMRB)
 
 ######################################## DATACLEANING
