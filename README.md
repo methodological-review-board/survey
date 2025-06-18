@@ -37,7 +37,7 @@ You can visualize the Quarto presentation here:
 
 ## 🔁 Reproducing the environment
 
-This project uses [`renv`](https://rstudio.github.io/renv/) to ensure package reproducibility.
+This project uses [`renv`](https://rstudio.github.io/renv/) to ensure reproducibility.
 
 To recreate the original R environment used in this project, open the project in RStudio and run:
 
