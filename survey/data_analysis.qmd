@@ -1044,7 +1044,7 @@ plot_confronto_gruppi("16", "")
 
 <br>
 
-La presentazione e il materiale completo sono disponibili alla [pagina del MRB](inserire link)
+La presentazione e il materiale completo sono disponibili alla pagina del MRB
 
 <br><br><br>
 
