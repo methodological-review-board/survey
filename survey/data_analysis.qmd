@@ -464,10 +464,10 @@ I cinque membri del DPSS affiliati al gruppo di ricerca Psicostat non hanno pres
 
 <br>
 
--   [Informazioni demografiche](#INFORMAZIONI%20DEMOGRAFICHE)
--   [Screening](#SCREENING)
--   [Pratiche di Open Science](#OPEN%20SCIENCE)
--   [Opinioni sul Methodological Review Board](#MRB)
+- [Informazioni demografiche](#informazioni-demografiche)
+- [Screening](#screening)
+- [Open Science](#open-science)
+- [Methodological Review Board (MRB)](#methodological-review-board)
 
 # INFORMAZIONI DEMOGRAFICHE
 
@@ -478,7 +478,7 @@ demo <- plot_demografiche("1", "")
 print(demo)
 ```
 
-# SCREENING {#screening}
+# SCREENING
 
 ## Quali metodi utilizzi nella tua ricerca?
 
@@ -867,7 +867,7 @@ plot_likert_molto("10.5", "Open Data")
 plot_likert_gruppi_molto("10.5", "Open Data")
 ```
 
-# Methodological<br>Review Board (MRB) {#mrb}
+# METHODOLOGICAL<br>REVIEW BOARD
 
 ## Con chi ti confronti sulla parte metodologica?
 
