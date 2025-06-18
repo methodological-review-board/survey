@@ -36,7 +36,6 @@ include-in-header:
 
 ```{r setup}
 #| echo: false
-rm(list= ls())
 library(readxl)
 library(ggplot2)
 library(dplyr)
