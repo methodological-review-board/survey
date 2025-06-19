@@ -31,7 +31,7 @@ You can access the original survey here:
 🔗 https://unipadova.qualtrics.com/jfe/form/SV_9NYvbilMLe7TGNU
 
 You can visualize the Quarto presentation here:  
-🔗 https://laurasitaunipd.github.io/mrb/survey/data_analysis.html
+🔗 https://methodological-review-board.github.io/survey/results/data_analysis.html
 
 ---
 
