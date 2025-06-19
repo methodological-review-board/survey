@@ -7,7 +7,7 @@ This repository contains all materials related to the survey conducted on Open S
 
 ---
 
-## 📁 Folder Structure – `survey-results/`
+## 📁 Folder Structure – `results-survey/`
 
 The `survey` folder includes:
 
