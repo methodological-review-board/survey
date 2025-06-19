@@ -1044,8 +1044,9 @@ plot_confronto_gruppi("16", "")
 
 <br>
 
+::: {style="font-size: 0.75em; text-align: center;"}
 La presentazione e il materiale completo sono disponibili alla pagina del MRB
+:::
 
-<br><br><br>
+![](qr_sito.png){fig-align="center"}
 
-![](logo_UNITI.png){fig-align="center"}
