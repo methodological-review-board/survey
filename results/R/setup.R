@@ -425,7 +425,7 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
   )
   
   livelli_ordinati <- c("Per niente", "Poco", "Abbastanza", "Completamente")
-  colori_risposta <- c("Per niente" = "#E57373", "Poco" = "#F4A261", "Abbastanza" = "#F6D55C", "Molto" = "#81C784")
+  colori_risposta <- c("Per niente" = "#E57373", "Poco" = "#F4A261", "Abbastanza" = "#F6D55C", "Completamente" = "#81C784")
   
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]) & !is.na(datacleaned$Gruppo), ]
   dati_filtrati$Risposta <- mappa_likert[as.character(dati_filtrati[[colonna]])]

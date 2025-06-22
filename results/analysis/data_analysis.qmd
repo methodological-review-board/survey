@@ -1,6 +1,6 @@
 ---
 title: "Risultati della survey:<br> Open Science e Methodological Review Board"
-authors: "L. Sità, M. Manente, A. Perugini, G. Calignano, E. Toffalini, \\ I. Alfarone, T. Marci, M. Pastore, G. Altoè"
+authors: "L. Sità, M. Manente, A. Perugini, G. Calignano, E. Toffalini, \\ I. Alfarone, T. Marci, M. Pastore, G. Altoè & Psicostat"
 format:
   revealjs:
     center: true
