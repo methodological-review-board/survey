@@ -1,1 +1,49 @@
-.Rproj.user
+# === FILE DI SISTEMA ===
+.DS_Store
+Thumbs.db
+
+# === RStudio ===
+.Rproj.user/
+.Rhistory
+.Rdata
+.Rapp.history
+.Rprofile
+.Ruserdata
+
+# === renv ===
+renv/library/
+renv/python/
+renv/staging/
+
+# === Quarto ===
+_quarto/
+*.nb.html
+*.utf8.md
+*.knit.md
+.cache/
+*/_cache/
+*/_files/
+*/_site/
+*/_book/
+
+# === Output HTML o PDF (se generato) ===
+*.html
+*.pdf
+
+# === Log e temporanei ===
+*.log
+*.aux
+*.out
+*.toc
+*.bbl
+*.blg
+
+# === IDE vari ===
+.vscode/
+.idea/
+
+# === Backup ed Excel temporanei ===
+*~ 
+*.bak
+*.tmp
+*.xlsx~$

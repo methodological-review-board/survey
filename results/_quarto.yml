@@ -1,0 +1,11 @@
+project:
+  type: default
+
+execute:
+  root: project
+
+format:
+  html:
+    toc: true
+    number-sections: true
+    self-contained: true
