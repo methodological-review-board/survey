@@ -8,20 +8,12 @@ tryCatch({
   message("❌ Errore attivando renv: ", e$message)
 })
 
-# Carica setup.R
-tryCatch({
-  source("R/setup.R")
-  message("✅ setup.R eseguito")
-}, error = function(e) {
-  message("❌ Errore in setup.R: ", e$message)
-})
-
-# Carica readxl dal percorso renv se necessario
+# Carica readxl
 tryCatch({
   suppressMessages(library(readxl))
   message("✅ readxl caricato")
 }, error = function(e) {
-  message("❌ ERRORE: Il pacchetto 'readxl' NON è stato caricato. Controlla l'ambiente renv o installalo con renv::install('readxl')")
+  message("❌ ERRORE: Il pacchetto 'readxl' NON è stato caricato. Installa con renv::install('readxl')")
 })
 
 # Carica dati
@@ -41,18 +33,27 @@ tryCatch({
   message("❌ Errore caricando data_dictionary.csv: ", e$message)
 })
 
-# Apri automaticamente il file QMD con un ritardo
+# Carica setup.R
+tryCatch({
+  source("R/setup.R")
+  message("✅ setup.R eseguito")
+}, error = function(e) {
+  message("❌ Errore in setup.R: ", e$message)
+})
+
+# Apri automaticamente il QMD se non già aperto
 tryCatch({
   if (interactive() && rstudioapi::isAvailable()) {
-    if (requireNamespace("later", quietly = TRUE)) {
-      later::later(function() {
-        if (file.exists("analysis/data_analysis.qmd")) {
-          rstudioapi::navigateToFile("analysis/data_analysis.qmd")
-          message("✅ data_analysis.qmd aperto (con ritardo)")
-        }
-      }, delay = 2)
+    Sys.sleep(1)  # attende che l'interfaccia RStudio sia pronta
+    f <- "analysis/data_analysis.qmd"
+    open_file <- tryCatch(rstudioapi::getActiveDocumentContext()$path, error = function(e) "")
+    if (!grepl(f, open_file)) {
+      rstudioapi::navigateToFile(f)
+      message("✅ data_analysis.qmd aperto")
+    } else {
+      message("ℹ️ data_analysis.qmd già aperto")
     }
   }
 }, error = function(e) {
-  message("❌ Errore aprendo il .qmd: ", e$message)
+  message("❌ Errore aprendo il QMD: ", e$message)
 })
