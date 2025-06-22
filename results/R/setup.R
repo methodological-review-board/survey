@@ -1,8 +1,9 @@
 library(readxl)
+library(here)
 library(datadictionary)
 
 ######################################## Importazione Dataset
-dataMRB <- read_excel("../data/dati.xlsx")
+dataMRB <- read_excel(here("data", "dati.xlsx"))
 dataMRB <- data.frame(dataMRB)
 
 ######################################## DATACLEANING
@@ -265,35 +266,38 @@ plot_demografiche <- function(colonna, titolo) {
 ## Funzione per visualizzazione dati disaggregati - DICOTOMICHE
 
 plot_confronto_gruppi <- function(colonna, titolo) {
-  datacleaned$Gruppo <- ifelse(datacleaned$"1" %in% c("PO, PA, RTD, RTT"), "Strutturati",
-                               ifelse(datacleaned$"1" %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
-
+  datacleaned$Gruppo <- ifelse(datacleaned$`1` == "PO, PA, RTD, RTT", "Strutturati",
+                               ifelse(datacleaned$`1` == "Dottorato, assegno di ricerca", "Non-strutturati", NA))
+  
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]) & !is.na(datacleaned$Gruppo), ]
   if (nrow(dati_filtrati) == 0) {
     warning("Nessun dato disponibile per il grafico.")
     return(NULL)
   }
-
-  freq_table <- as.data.frame(table(Risposta = dati_filtrati[[colonna]], Gruppo = dati_filtrati$Gruppo))
+  
+  freq_table <- as.data.frame(table(Gruppo = dati_filtrati$Gruppo, Risposta = dati_filtrati[[colonna]]))
   colnames(freq_table)[3] <- "Frequenza"
-
+  
   totali <- aggregate(Frequenza ~ Gruppo, data = freq_table, sum)
   freq_table <- merge(freq_table, totali, by = "Gruppo", suffixes = c("", "_Totale"))
   freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
-  max_y <- max(freq_table$Percentuale) + 10  # aggiunta margine
-
-  ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
-    geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  
+  # Colori fissi per le risposte
+  colori_risposta <- c("Sì" = "#4CAF50", "No" = "#F44336")  # verde, rosso
+  
+  ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
+    geom_col(position = position_dodge(width = 0.7), width = 0.6) +
     geom_text(aes(label = paste0("n=", Frequenza)),
-              position = position_dodge(width = 0.8), vjust = -0.4, size = 4.5) +
+              position = position_dodge(width = 0.7), vjust = -0.5, size = 4.5) +
+    scale_fill_manual(values = colori_risposta) +
+    scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 10)) +
     labs(
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
-      x = "Risposta",
+      x = "Gruppo",
       y = "Percentuale",
-      fill = "Gruppo"
+      fill = "Risposta"
     ) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),

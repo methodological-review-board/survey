@@ -1,11 +1,18 @@
 project:
   type: default
+  output-dir: analysis
 
 execute:
   root: project
+  execute-dir: document
+  freeze: auto
 
 format:
-  html:
+  revealjs:
     toc: true
-    number-sections: true
+    slide-number: true
+    theme: simple
+    embed-resources: true
+    logo: "images/logo_MRB.png"
+    footer: "Tavola Rotonda 27 giugno 2025"
     self-contained: true

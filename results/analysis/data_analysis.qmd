@@ -8,7 +8,9 @@ format:
     slide-number: true
     footer: "Tavola Rotonda 27 giugno 2025"
     theme: simple
-cache: true
+execute:
+  cache: false
+  freeze: false
 include-in-header:
   - text: |
       <style>
@@ -52,7 +54,7 @@ source("../R/setup.R")
 
 ## Tasso di risposta alla survey
 
-```{r}
+```{r tasso}
 plot_tasso_risposta(totali_strutturati = 65, totali_non_strutturati = 77)
 ```
 
