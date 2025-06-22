@@ -312,7 +312,7 @@ plot_frequenze("8.1", "Pre-registrazione ipotesi")
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.1b}
-plot_confronto_gruppi("8.1", "Pre-registrazione ipotesi")
+plot_confronto_gruppi_2("8.1", "Pre-registrazione ipotesi")
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -324,7 +324,7 @@ plot_frequenze("8.2", "Pre-registrazione piano di analisi dei dati")
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.2b}
-plot_confronto_gruppi("8.2", "Pre-registrazione piano di analisi dei dati")
+plot_confronto_gruppi_2("8.2", "Pre-registrazione piano di analisi dei dati")
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -336,7 +336,7 @@ plot_frequenze("8.3", "Registered Report")
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.3b}
-plot_confronto_gruppi("8.3", "Registered Report")
+plot_confronto_gruppi_2("8.3", "Registered Report")
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -348,7 +348,7 @@ plot_frequenze("8.4", "Open Materials")
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.4b}
-plot_confronto_gruppi("8.4", "Open Materials")
+plot_confronto_gruppi_2("8.4", "Open Materials")
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -360,7 +360,7 @@ plot_frequenze("8.5", "Open Code")
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.5b}
-plot_confronto_gruppi("8.5", "Open Code")
+plot_confronto_gruppi_2("8.5", "Open Code")
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -372,7 +372,7 @@ plot_frequenze("8.6", "Open Data")
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.6b}
-plot_confronto_gruppi("8.6", "Open Data")
+plot_confronto_gruppi_2("8.6", "Open Data")
 ```
 
 ## Quanto può contribuire al progresso della tua disciplina questa pratica?

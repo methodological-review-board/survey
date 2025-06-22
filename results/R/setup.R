@@ -285,12 +285,15 @@ plot_confronto_gruppi <- function(colonna, titolo) {
   # Colori fissi per le risposte
   colori_risposta <- c("Sì" = "#4CAF50", "No" = "#F44336")  # verde, rosso
   
+  # Calcolo del limite Y: sempre almeno 100, ma aggiungo margine se necessario
+  max_y <- max(100, max(freq_table$Percentuale) + 7)
+  
   ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
     geom_col(position = position_dodge(width = 0.7), width = 0.6) +
     geom_text(aes(label = paste0("n=", Frequenza)),
               position = position_dodge(width = 0.7), vjust = -0.5, size = 4.5) +
     scale_fill_manual(values = colori_risposta) +
-    scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 10)) +
+    scale_y_continuous(limits = c(0, max_y), breaks = seq(0, 100, by = 10)) +
     labs(
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
@@ -307,13 +310,71 @@ plot_confronto_gruppi <- function(colonna, titolo) {
     )
 }
 
-
+## Funzione per visualizzazione dati disaggregati - TRICOTOMICHE
+plot_confronto_gruppi_2 <- function(colonna, titolo) {
+  datacleaned$Gruppo <- ifelse(datacleaned$`1` %in% c("PO, PA, RTD, RTT"), "Strutturati",
+                               ifelse(datacleaned$`1` %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
+  
+  dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]) & !is.na(datacleaned$Gruppo), ]
+  
+  risposta_map <- c(
+    "No, mai" = "No, mai",
+    "Sì, ma non l'ho gestito personalmente" = "Sì, ma non l'ho gestito personalmente",
+    "Sì, l'ho gestito personalmente" = "Sì, l'ho gestito personalmente"
+  )
+  dati_filtrati$Risposta <- risposta_map[as.character(dati_filtrati[[colonna]])]
+  dati_filtrati <- dati_filtrati[!is.na(dati_filtrati$Risposta), ]
+  
+  livelli_ordinati <- c(
+    "No, mai",
+    "Sì, ma non l'ho gestito personalmente",
+    "Sì, l'ho gestito personalmente"
+  )
+  dati_filtrati$Risposta <- factor(dati_filtrati$Risposta, levels = livelli_ordinati)
+  
+  freq_table <- as.data.frame(table(Gruppo = dati_filtrati$Gruppo, Risposta = dati_filtrati$Risposta))
+  colnames(freq_table) <- c("Gruppo", "Risposta", "Frequenza")
+  
+  totali <- aggregate(Frequenza ~ Gruppo, data = freq_table, sum)
+  freq_table <- merge(freq_table, totali, by = "Gruppo", suffixes = c("", "_Totale"))
+  freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
+  
+  colori_risposta <- c(
+    "No, mai" = "#F44336",
+    "Sì, ma non l'ho gestito personalmente" = "#FFA500",
+    "Sì, l'ho gestito personalmente" = "#4CAF50"
+  )
+  
+  max_percentuale <- max(freq_table$Percentuale)
+  limite_y <- max(100, max_percentuale + 7)
+  
+  ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
+    geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+    geom_text(aes(label = paste0("n=", Frequenza)),
+              position = position_dodge(width = 0.8), vjust = -0.5, size = 5) +
+    scale_fill_manual(values = colori_risposta, breaks = livelli_ordinati) +
+    labs(
+      title = titolo,
+      subtitle = paste("N =", sum(freq_table$Frequenza)),
+      x = "Gruppo",
+      y = "Percentuale",
+      fill = "Risposta"
+    ) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, limite_y)) +
+    theme_minimal(base_size = 13) +
+    theme(
+      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+      axis.title.x = element_text(face = "bold"),
+      axis.title.y = element_text(face = "bold"),
+      plot.margin = margin(t = 25, r = 15, b = 15, l = 15)
+    )
+}
+    
 ## Funzione per dati disaggregati - LIKERT "Per niente-Molto"
-
 plot_likert_gruppi_molto <- function(colonna, titolo) {
-  datacleaned$Gruppo <- ifelse(datacleaned$"1" %in% c("PO, PA, RTD, RTT"), "Strutturati",
-                               ifelse(datacleaned$"1" %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
-
+  datacleaned$Gruppo <- ifelse(datacleaned$`1` %in% c("PO, PA, RTD, RTT"), "Strutturati",
+                               ifelse(datacleaned$`1` %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
+  
   mappa_likert <- c(
     "Per niente" = "Per niente", "per niente" = "Per niente",
     "Poco" = "Poco", "poco" = "Poco",
@@ -321,33 +382,36 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
     "Molto" = "Molto", "molto" = "Molto"
   )
   livelli_ordinati <- c("Per niente", "Poco", "Abbastanza", "Molto")
-
+  colori_risposta <- c("Per niente" = "firebrick", "Poco" = "orange", "Abbastanza" = "gold", "Molto" = "forestgreen")
+  
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]) & !is.na(datacleaned$Gruppo), ]
   dati_filtrati$Risposta <- mappa_likert[as.character(dati_filtrati[[colonna]])]
   dati_filtrati <- dati_filtrati[!is.na(dati_filtrati$Risposta) & dati_filtrati$Risposta != "", ]
   dati_filtrati$Risposta <- factor(dati_filtrati$Risposta, levels = livelli_ordinati, ordered = TRUE)
-
-  freq_table <- as.data.frame(table(dati_filtrati$Risposta, dati_filtrati$Gruppo))
-  colnames(freq_table) <- c("Risposta", "Gruppo", "Frequenza")
-
+  
+  freq_table <- as.data.frame(table(Gruppo = dati_filtrati$Gruppo, Risposta = dati_filtrati$Risposta))
+  colnames(freq_table) <- c("Gruppo", "Risposta", "Frequenza")
+  
   totali <- aggregate(Frequenza ~ Gruppo, data = freq_table, sum)
   freq_table <- merge(freq_table, totali, by = "Gruppo", suffixes = c("", "_Totale"))
   freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
-  max_y <- max(freq_table$Percentuale) + 10  # aggiunto margine verticale
-
-  ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
+  
+  # Calcolo limite Y
+  max_y <- max(100, max(freq_table$Percentuale) + 7)
+  
+  ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
     geom_text(aes(label = paste0("n=", Frequenza)),
-              position = position_dodge(width = 0.8), vjust = -0.4, size = 5) +
+              position = position_dodge(width = 0.8), vjust = -0.5, size = 5) +
+    scale_fill_manual(values = colori_risposta) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     labs(
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
-      x = "Risposta",
+      x = "Gruppo",
       y = "Percentuale",
-      fill = "Gruppo"
+      fill = "Risposta"
     ) +
-    scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -356,53 +420,55 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
 }
-
-
+    
 ## Funzione per dati disaggregati - LIKERT "Per niente-Completamente"
-
 plot_likert_gruppi_completamente <- function(colonna, titolo) {
-  datacleaned$Gruppo <- ifelse(datacleaned$"1" %in% c("PO, PA, RTD, RTT"), "Strutturati",
-                               ifelse(datacleaned$"1" %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
-
+  datacleaned$Gruppo <- ifelse(datacleaned$`1` %in% c("PO, PA, RTD, RTT"), "Strutturati",
+                               ifelse(datacleaned$`1` %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
+  
   mappa_likert <- c(
     "Per niente" = "Per niente", "per niente" = "Per niente",
     "Poco" = "Poco", "poco" = "Poco",
     "Abbastanza" = "Abbastanza", "abbastanza" = "Abbastanza",
     "Completamente" = "Completamente", "completamente" = "Completamente"
   )
+  
   livelli_ordinati <- c("Per niente", "Poco", "Abbastanza", "Completamente")
-
+  colori_risposta <- c("Per niente" = "firebrick", "Poco" = "orange", "Abbastanza" = "gold", "Completamente" = "forestgreen")
+  
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]) & !is.na(datacleaned$Gruppo), ]
   dati_filtrati$Risposta <- mappa_likert[as.character(dati_filtrati[[colonna]])]
   dati_filtrati <- dati_filtrati[!is.na(dati_filtrati$Risposta) & dati_filtrati$Risposta != "", ]
   dati_filtrati$Risposta <- factor(dati_filtrati$Risposta, levels = livelli_ordinati, ordered = TRUE)
-
-  freq_table <- as.data.frame(table(dati_filtrati$Risposta, dati_filtrati$Gruppo))
-  colnames(freq_table) <- c("Risposta", "Gruppo", "Frequenza")
-
+  
+  freq_table <- as.data.frame(table(Gruppo = dati_filtrati$Gruppo, Risposta = dati_filtrati$Risposta))
+  colnames(freq_table) <- c("Gruppo", "Risposta", "Frequenza")
+  
   totali <- aggregate(Frequenza ~ Gruppo, data = freq_table, sum)
   freq_table <- merge(freq_table, totali, by = "Gruppo", suffixes = c("", "_Totale"))
   freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
-  max_y <- max(freq_table$Percentuale) + 10  # margine per etichette
-
-  ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
+  
+  max_percentuale <- max(freq_table$Percentuale)
+  limite_y <- max(100, max_percentuale + 7)  # margine per etichette
+  
+  ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
     geom_text(aes(label = paste0("n=", Frequenza)),
-              position = position_dodge(width = 0.8), vjust = -0.4, size = 5) +
+              position = position_dodge(width = 0.8), vjust = -0.5, size = 5) +
+    scale_fill_manual(values = colori_risposta) +
     labs(
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
-      x = "Risposta",
+      x = "Gruppo",
       y = "Percentuale",
-      fill = "Gruppo"
+      fill = "Risposta"
     ) +
-    scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, limite_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
       axis.title.x = element_text(face = "bold"),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 25, r = 15, b = 15, l = 15)
     )
 }
