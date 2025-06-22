@@ -2,7 +2,7 @@ library(readxl)
 library(datadictionary)
 
 ######################################## Importazione Dataset
-dataMRB <- read_excel("data/dati.xlsx")
+dataMRB <- read_excel("../data/dati.xlsx")
 dataMRB <- data.frame(dataMRB)
 
 ######################################## DATACLEANING

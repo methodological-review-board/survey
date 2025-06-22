@@ -20,7 +20,7 @@ include-in-header:
       #title-slide::after {
         content: "";
         display: block;
-        background-image: url("logo_UNITI.png");
+        background-image: url("../images/logo_UNITI.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
@@ -47,7 +47,7 @@ library(datadictionary)
 ```
 
 ```{r setup}
-source("setup.R")
+source("../R/setup.R")
 ```
 
 ## Tasso di risposta alla survey
@@ -620,13 +620,13 @@ freq <- sort(colSums(as.matrix(DTM)), decreasing = TRUE)
 word_freq <- data.frame(word = names(freq), freq = freq)
 
 par(mar=c(0,0,0,0))
-png("wordcloud.png", width = 1000, height = 1000, res = 200)
+png("../images/wordcloud.png", width = 1000, height = 1000, res = 200)
 wordcloud( exp_corpus, random.order = FALSE, colors = jcolors::jcolors("pal12") )
 dev.off()
 ```
 
 ```{r mrb15b, echo=FALSE, fig.align = 'center'}
-knitr::include_graphics("wordcloud.png")
+knitr::include_graphics("../images/wordcloud.png")
 ```
 
 ## Riterresti utile una tavola rotonda relativa al MRB?
@@ -650,7 +650,7 @@ plot_confronto_gruppi("16", "")
 La presentazione e il materiale completo sono disponibili alla pagina del MRB
 :::
 
-![](qr_sito.png){fig-align="center"}
+![](../images/qr_sito.png){fig-align="center"}
 
 ```{r paginaweb}
 # Copia automatica dell'HTML renderizzato

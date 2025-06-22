@@ -43,7 +43,9 @@ _quarto/
 .idea/
 
 # === Backup ed Excel temporanei ===
-*~ 
+*~
 *.bak
 *.tmp
 *.xlsx~$
+
+/.quarto/

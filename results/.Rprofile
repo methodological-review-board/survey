@@ -1,4 +1,3 @@
-
 message("✅ .Rprofile eseguito — versione blindata")
 
 # Attiva renv
@@ -42,11 +41,17 @@ tryCatch({
   message("❌ Errore caricando data_dictionary.csv: ", e$message)
 })
 
-# Apri il .qmd
+# Apri automaticamente il file QMD con un ritardo
 tryCatch({
   if (interactive() && rstudioapi::isAvailable()) {
-    rstudioapi::navigateToFile("analysis/data_analysis.qmd")
-    message("✅ data_analysis.qmd aperto")
+    if (requireNamespace("later", quietly = TRUE)) {
+      later::later(function() {
+        if (file.exists("analysis/data_analysis.qmd")) {
+          rstudioapi::navigateToFile("analysis/data_analysis.qmd")
+          message("✅ data_analysis.qmd aperto (con ritardo)")
+        }
+      }, delay = 2)
+    }
   }
 }, error = function(e) {
   message("❌ Errore aprendo il .qmd: ", e$message)
