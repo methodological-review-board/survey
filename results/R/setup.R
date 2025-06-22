@@ -45,20 +45,19 @@ require(ggplot2)
 
 plot_frequenze <- function(colonna, titolo) {
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]), ]
-
+  
   if (nrow(dati_filtrati) == 0) {
     warning("Nessun dato disponibile per il grafico.")
     return(NULL)
   }
-
+  
   freq_table <- as.data.frame(table(Risposta = dati_filtrati[[colonna]]))
   colnames(freq_table)[2] <- "Frequenza"
   freq_table$Percentuale <- (freq_table$Frequenza / sum(freq_table$Frequenza)) * 100
   N <- sum(freq_table$Frequenza)
-  max_y <- max(freq_table$Percentuale) + 10  # aggiunto margine per non tagliare etichette
-
+  
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
-    geom_col(width = 0.7, fill = "#4682B4", show.legend = FALSE) +
+    geom_col(width = 0.7, fill = "#89BFEA", show.legend = FALSE) +
     geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 6) +
     labs(
       title = titolo,
@@ -66,7 +65,7 @@ plot_frequenze <- function(colonna, titolo) {
       x = "Risposta",
       y = "Percentuale"
     ) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -80,28 +79,27 @@ plot_frequenze <- function(colonna, titolo) {
 
 plot_likert_molto <- function(colonna, titolo) {
   dati <- datacleaned[[colonna]]
-
+  
   mappa_likert <- c(
     "Per niente" = "Per niente", "per niente" = "Per niente",
     "Poco" = "Poco", "poco" = "Poco",
     "Abbastanza" = "Abbastanza", "abbastanza" = "Abbastanza",
     "Molto" = "Molto", "molto" = "Molto"
   )
-
+  
   dati_raggruppati <- mappa_likert[as.character(dati)]
   dati_raggruppati <- dati_raggruppati[!is.na(dati_raggruppati) & dati_raggruppati != ""]
-
+  
   livelli_ordinati <- c("Per niente", "Poco", "Abbastanza", "Molto")
   dati_fattore <- factor(dati_raggruppati, levels = livelli_ordinati, ordered = TRUE)
-
+  
   freq_table <- as.data.frame(table(Risposta = dati_fattore))
   colnames(freq_table)[2] <- "Frequenza"
   freq_table$Percentuale <- (freq_table$Frequenza / sum(freq_table$Frequenza)) * 100
   N <- sum(freq_table$Frequenza)
-  max_y <- max(freq_table$Percentuale) + 10  # margine per evitare taglio etichette
-
+  
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
-    geom_col(width = 0.7, fill = "#4682B4", show.legend = FALSE) +
+    geom_col(width = 0.7, fill = "#89BFEA", show.legend = FALSE) +
     geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 5.2) +
     labs(
       title = titolo,
@@ -110,7 +108,7 @@ plot_likert_molto <- function(colonna, titolo) {
       y = "Percentuale"
     ) +
     scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
     theme_minimal(base_size = 15) +
     theme(
       plot.title = element_text(face = "bold", size = 17, hjust = 0.5),
@@ -120,33 +118,31 @@ plot_likert_molto <- function(colonna, titolo) {
     )
 }
 
-
 ## Funzione likert "Per niente-Completamente"
 
 plot_likert_completamente <- function(colonna, titolo) {
   dati <- datacleaned[[colonna]]
-
+  
   mappa_likert_1 <- c(
     "Per niente" = "Per niente", "per niente" = "Per niente",
     "Poco" = "Poco", "poco" = "Poco",
     "Abbastanza" = "Abbastanza", "abbastanza" = "Abbastanza",
     "Completamente" = "Completamente", "completamente" = "Completamente"
   )
-
+  
   dati_raggruppati <- mappa_likert_1[as.character(dati)]
   dati_raggruppati <- dati_raggruppati[!is.na(dati_raggruppati) & dati_raggruppati != ""]
-
+  
   livelli_ordinati <- c("Per niente", "Poco", "Abbastanza", "Completamente")
   dati_fattore <- factor(dati_raggruppati, levels = livelli_ordinati, ordered = TRUE)
-
+  
   freq_table <- as.data.frame(table(Risposta = dati_fattore))
   colnames(freq_table)[2] <- "Frequenza"
   freq_table$Percentuale <- (freq_table$Frequenza / sum(freq_table$Frequenza)) * 100
   N <- sum(freq_table$Frequenza)
-  max_y <- max(freq_table$Percentuale) + 10  # margine per etichette
-
+  
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
-    geom_col(width = 0.7, fill = "#4682B4", show.legend = FALSE) +
+    geom_col(width = 0.7, fill = "#89BFEA", show.legend = FALSE) +
     geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 5.2) +
     labs(
       title = titolo,
@@ -155,7 +151,7 @@ plot_likert_completamente <- function(colonna, titolo) {
       y = "Percentuale"
     ) +
     scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
     theme_minimal(base_size = 15) +
     theme(
       plot.title = element_text(face = "bold", size = 17, hjust = 0.5),
@@ -164,7 +160,6 @@ plot_likert_completamente <- function(colonna, titolo) {
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
 }
-
 
 ######################################## FUNZIONI DESCRITTIVE DISAGGREGATE
 
@@ -176,22 +171,20 @@ datacleaned$Gruppo <- ifelse(datacleaned$"1" %in% c("PO, PA, RTD, RTT"), "Strutt
 
 ## Funzione per TASSO DI RISPOSTA
 plot_tasso_risposta <- function(totali_strutturati, totali_non_strutturati, titolo = "") {
-
-  # Calcolo delle risposte ricevute per ciascun gruppo
+  
   risposte_strutturati <- sum(datacleaned$Gruppo == "Strutturati", na.rm = TRUE)
   risposte_non_strutturati <- sum(datacleaned$Gruppo == "Non-strutturati", na.rm = TRUE)
-
-  # Creazione del dataframe per il grafico
+  
   df <- data.frame(
     Gruppo = c("Strutturati", "Non-strutturati"),
     Risposte = c(risposte_strutturati, risposte_non_strutturati),
     Totali = c(totali_strutturati, totali_non_strutturati)
   )
-
-  # Calcolo del tasso di risposta
+  
   df$Percentuale <- (df$Risposte / df$Totali) * 100
-
-  # Creazione del grafico
+  
+  colori <- c("Strutturati" = "#4EB9BA", "Non-strutturati" = "#EF7D81")
+  
   ggplot(df, aes(x = Gruppo, y = Percentuale, fill = Gruppo)) +
     geom_col(width = 0.7) +
     geom_text(aes(label = paste0("n=", Risposte)), vjust = -0.4, size = 4.5) +
@@ -201,7 +194,8 @@ plot_tasso_risposta <- function(totali_strutturati, totali_non_strutturati, tito
       x = "Gruppo",
       y = "Percentuale di risposta"
     ) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, 100)) +
+    scale_fill_manual(values = colori) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -215,42 +209,40 @@ plot_tasso_risposta <- function(totali_strutturati, totali_non_strutturati, tito
 plot_demografiche <- function(colonna, titolo) {
   datacleaned$Gruppo <- ifelse(datacleaned$"1" %in% c("PO, PA, RTD, RTT"), "Strutturati",
                                ifelse(datacleaned$"1" %in% c("Dottorato, assegno di ricerca"), "Non-strutturati", NA))
-
+  
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]) & !is.na(datacleaned$Gruppo), ]
   if (nrow(dati_filtrati) == 0) {
     warning("Nessun dato disponibile per il grafico.")
     return(NULL)
   }
-
+  
   freq_table <- as.data.frame(table(Risposta = dati_filtrati[[colonna]], Gruppo = dati_filtrati$Gruppo))
   colnames(freq_table)[3] <- "Frequenza"
   freq_table <- freq_table[freq_table$Frequenza > 0, ]
-
-  totali <- aggregate(Frequenza ~ Gruppo, data = freq_table, sum)
-  freq_table <- merge(freq_table, totali, by = "Gruppo", suffixes = c("", "_Totale"))
-  freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
+  
+  N <- nrow(datacleaned)  # Totale osservazioni (es. 53)
+  freq_table$Percentuale <- (freq_table$Frequenza / N) * 100
   max_y <- max(freq_table$Percentuale) + 10
-
-  # Colori + Etichette leggenda personalizzate
-  colori <- c("Strutturati" = "#00BFC4", "Non-strutturati" = "#F8766D")
+  
+  colori <- c("Strutturati" = "#4EB9BA", "Non-strutturati" = "#EF7D81")
   etichette_legenda <- c(
     "Strutturati" = "Strutturati = PO, PA, RTD, RTT",
     "Non-strutturati" = "Non strutturati = Dottorato, assegno di ricerca"
   )
-
+  
   ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
     geom_text(aes(label = paste0("n=", Frequenza)),
               position = position_dodge(width = 0.8), vjust = -0.4, size = 5) +
     labs(
       title = titolo,
-      subtitle = paste("N =", sum(freq_table$Frequenza)),
+      subtitle = paste("N =", N),
       x = "Risposta",
       y = "Percentuale",
-      fill = NULL  # Titolo della legenda (rimosso)
+      fill = NULL
     ) +
     scale_fill_manual(values = colori, labels = etichette_legenda) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, max(100, max_y))) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -261,7 +253,6 @@ plot_demografiche <- function(colonna, titolo) {
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
 }
-
 
 ## Funzione per visualizzazione dati disaggregati - DICOTOMICHE
 
@@ -283,7 +274,7 @@ plot_confronto_gruppi <- function(colonna, titolo) {
   freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
   
   # Colori fissi per le risposte
-  colori_risposta <- c("Sì" = "#4CAF50", "No" = "#F44336")  # verde, rosso
+  colori_risposta <- c("Sì" = "#81C784", "No" = "#E57373")  # verde, rosso
   
   # Calcolo del limite Y: sempre almeno 100, ma aggiungo margine se necessario
   max_y <- max(100, max(freq_table$Percentuale) + 7)
@@ -340,9 +331,9 @@ plot_confronto_gruppi_2 <- function(colonna, titolo) {
   freq_table$Percentuale <- (freq_table$Frequenza / freq_table$Frequenza_Totale) * 100
   
   colori_risposta <- c(
-    "No, mai" = "#F44336",
-    "Sì, ma non l'ho gestito personalmente" = "#FFA500",
-    "Sì, l'ho gestito personalmente" = "#4CAF50"
+    "No, mai" = "#E57373",
+    "Sì, ma non l'ho gestito personalmente" = "#F4A261",
+    "Sì, l'ho gestito personalmente" = "#81C784"
   )
   
   max_percentuale <- max(freq_table$Percentuale)
@@ -360,7 +351,7 @@ plot_confronto_gruppi_2 <- function(colonna, titolo) {
       y = "Percentuale",
       fill = "Risposta"
     ) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, limite_y)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, limite_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
@@ -382,7 +373,7 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
     "Molto" = "Molto", "molto" = "Molto"
   )
   livelli_ordinati <- c("Per niente", "Poco", "Abbastanza", "Molto")
-  colori_risposta <- c("Per niente" = "firebrick", "Poco" = "orange", "Abbastanza" = "gold", "Molto" = "forestgreen")
+  colori_risposta <- c("Per niente" = "#E57373", "Poco" = "#F4A261", "Abbastanza" = "#F6D55C", "Molto" = "#81C784")
   
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]) & !is.na(datacleaned$Gruppo), ]
   dati_filtrati$Risposta <- mappa_likert[as.character(dati_filtrati[[colonna]])]
@@ -404,7 +395,7 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
     geom_text(aes(label = paste0("n=", Frequenza)),
               position = position_dodge(width = 0.8), vjust = -0.5, size = 5) +
     scale_fill_manual(values = colori_risposta) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, max_y)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, max_y)) +
     labs(
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
@@ -434,7 +425,7 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
   )
   
   livelli_ordinati <- c("Per niente", "Poco", "Abbastanza", "Completamente")
-  colori_risposta <- c("Per niente" = "firebrick", "Poco" = "orange", "Abbastanza" = "gold", "Completamente" = "forestgreen")
+  colori_risposta <- c("Per niente" = "#E57373", "Poco" = "#F4A261", "Abbastanza" = "#F6D55C", "Molto" = "#81C784")
   
   dati_filtrati <- datacleaned[!is.na(datacleaned[[colonna]]) & !is.na(datacleaned$Gruppo), ]
   dati_filtrati$Risposta <- mappa_likert[as.character(dati_filtrati[[colonna]])]
@@ -463,7 +454,7 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
       y = "Percentuale",
       fill = "Risposta"
     ) +
-    scale_y_continuous(breaks = seq(0, 100, by = 5), limits = c(0, limite_y)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, limite_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
