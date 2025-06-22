@@ -1050,3 +1050,17 @@ La presentazione e il materiale completo sono disponibili alla pagina del MRB
 
 ![](qr_sito.png){fig-align="center"}
 
+```{r paginaweb}
+# Copia automatica dell'HTML renderizzato
+if (interactive()) {
+  html_path <- "results/data_analysis.html"
+  dest_path <- "docs/data_analysis.html"
+  
+  if (file.exists(html_path)) {
+    file.copy(html_path, dest_path, overwrite = TRUE)
+    message("✅ Copiato in docs/data_analysis.html per GitHub Pages.")
+  } else {
+    warning("⚠️ File HTML non trovato: ", html_path)
+  }
+}
+```
