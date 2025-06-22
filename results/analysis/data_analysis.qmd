@@ -657,7 +657,7 @@ La presentazione e il materiale completo sono disponibili alla pagina del MRB
 ```{r paginaweb}
 # Copia automatica dell'HTML renderizzato
 if (interactive()) {
-  html_path <- "results/data_analysis.html"
+  html_path <- "results/analysis/data_analysis.html"
   dest_path <- "docs/data_analysis.html"
   
   if (file.exists(html_path)) {
