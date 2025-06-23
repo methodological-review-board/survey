@@ -67,8 +67,6 @@ I cinque membri del DPSS affiliati al gruppo di ricerca Psicostat non hanno pres
 
 # Contenuto della presentazione
 
-<br>
-
 - [Informazioni demografiche](#informazioni-demografiche)
 - [Screening](#screening)
 - [Open Science](#open-science)
