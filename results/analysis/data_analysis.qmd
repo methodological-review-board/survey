@@ -8,6 +8,7 @@ format:
     slide-number: true
     footer: "Tavola Rotonda 27 giugno 2025"
     theme: simple
+    output-file: "data_analysis.html"
 execute:
   cache: false
   freeze: false
@@ -64,7 +65,7 @@ I cinque membri del DPSS affiliati al gruppo di ricerca Psicostat non hanno pres
 
 <br>
 
-# Contenuto della survey
+# Contenuto della presentazione
 
 <br>
 
@@ -72,6 +73,7 @@ I cinque membri del DPSS affiliati al gruppo di ricerca Psicostat non hanno pres
 - [Screening](#screening)
 - [Open Science](#open-science)
 - [Methodological Review Board (MRB)](#methodological-review-board)
+- [Materiali aggiuntivi](#materiali-aggiuntivi)
 
 # INFORMAZIONI DEMOGRAFICHE
 
@@ -83,6 +85,260 @@ print(demo)
 ```
 
 # SCREENING
+
+## Hai un account su OSF o altre repository?
+
+```{r scr3a}
+plot_frequenze("3", "")
+```
+
+## Hai mai sentito parlare della crisi di replicabilità?
+
+```{r scr4a}
+plot_frequenze("4", "")
+```
+
+## Se sì, pensi sia un problema rilevante per il progresso scientifico?
+
+```{r scr5a}
+plot_frequenze("5", "")
+```
+
+## Se sì, pensi sia un problema rilevante per il progresso scientifico?
+
+```{r scr5b}
+
+plot_confronto_gruppi("5", "")
+```
+
+# OPEN SCIENCE
+
+## Hai mai sentito parlare di questa pratica?
+
+```{r os7.1a}
+plot_frequenze("7.1", "Pre-registrazione ipotesi")
+```
+
+## Hai mai sentito parlare di questa pratica?
+
+```{r os7.2a}
+plot_frequenze("7.2", "Pre-registrazione piano di analisi dei dati")
+```
+
+## Hai mai sentito parlare di questa pratica?
+
+```{r os7.3a}
+plot_frequenze("7.3", "Registered Report")
+```
+
+## Hai mai utilizzato questa pratica?
+
+```{r os8.1a}
+plot_frequenze("8.1", "Pre-registrazione ipotesi")
+```
+
+## Hai mai utilizzato questa pratica?
+
+```{r os8.2a}
+plot_frequenze("8.2", "Pre-registrazione piano di analisi dei dati")
+```
+
+## Hai mai utilizzato questa pratica?
+
+```{r os8.3a}
+plot_frequenze("8.3", "Registered Report")
+```
+
+## Hai mai utilizzato questa pratica?
+
+```{r os8.4a}
+plot_frequenze("8.4", "Open Materials")
+```
+
+## Hai mai utilizzato questa pratica?
+
+```{r os8.5a}
+plot_frequenze("8.5", "Open Code")
+```
+
+## Hai mai utilizzato questa pratica?
+
+```{r os8.6a}
+plot_frequenze("8.6", "Open Data")
+```
+
+## Quanto può contribuire al progresso della tua disciplina questa pratica?
+
+```{r os9.1a}
+plot_likert_molto("9.1", "Pre-registrazione ipotesi")
+```
+
+## Quanto può contribuire al progresso della tua disciplina questa pratica?
+
+```{r os9.2a}
+plot_likert_molto("9.2", "Pre-registrazione piano di analisi dei dati")
+```
+
+## Quanto può contribuire al progresso della tua disciplina questa pratica?
+
+```{r os9.3a}
+plot_likert_molto("9.3", "Registered Report")
+```
+
+## Userai questa pratica nel tuo prossimo studio?
+
+```{r os10.1a}
+plot_likert_molto("10.1", "Pre-registrazione ipotesi")
+```
+
+## Userai questa pratica nel tuo prossimo studio?
+
+```{r os10.2a}
+plot_likert_molto("10.2", "Pre-registrazione piano di analisi dei dati")
+```
+
+## Userai questa pratica nel tuo prossimo studio?
+
+```{r os10.3a}
+plot_likert_molto("10.3", "Open Materials")
+```
+
+## Userai questa pratica nel tuo prossimo studio?
+
+```{r os10.4a}
+plot_likert_molto("10.4", "Open Code")
+```
+
+## Userai questa pratica nel tuo prossimo studio?
+
+```{r os10.5a}
+plot_likert_molto("10.5", "Open Data")
+```
+
+# METHODOLOGICAL<br>REVIEW BOARD
+
+## Con chi ti confronti sulla parte metodologica?
+
+```{r mrb11.1a}
+plot_frequenze("11.1", "Qualcuno del gruppo di ricerca")
+```
+
+## Con chi ti confronti sulla parte metodologica?
+
+```{r mrb11.2a}
+plot_frequenze("11.2", "Esperto esterno, poi inserito come co-autore")
+```
+
+## Con chi ti confronti sulla parte metodologica?
+
+```{r mrb11.3a}
+plot_frequenze("11.3", "Esperto esterno, non inserito come co-autore ")
+```
+
+## Quanto senti di aver bisogno di aiuto nel pre-registrare?
+
+```{r mrb12.1a}
+plot_likert_completamente("12.1", "")
+```
+
+## Quanto ti sentiresti più sicuro a pre-registrare dopo un confronto con il MRB?
+
+```{r mrb12.2a}
+plot_likert_completamente("12.2", "")
+```
+
+## Quanto ritieni l'MRB utile a
+
+```{r mrb13.1a}
+plot_likert_completamente("13.1", "Essere un riferimento per l'ambito metodologico")
+```
+
+## Quanto ritieni l'MRB utile a
+
+```{r mrb13.2a}
+plot_likert_completamente("13.2", "Promuovere collaborazioni")
+```
+
+## Quanto ritieni l'MRB utile a
+
+```{r mrb13.3a}
+plot_likert_completamente("13.3", "Prevenire sprechi di risorse")
+```
+
+## Quanto ritieni l'MRB utile a
+
+```{r mrb13.4a}
+plot_likert_completamente("13.4", "Migliorare la qualità della ricerca")
+```
+
+## Quanto ritieni l'MRB utile a
+
+```{r mrb13.5a}
+plot_likert_completamente("13.5", "Migliorare la qualità della ricerca")
+```
+
+## Il MRB dovrebbe essere integrato al Comitato Etico?
+
+```{r mrb14a}
+plot_frequenze("14", "")
+```
+
+## Il MRB dovrebbe essere integrato al Comitato Etico?
+
+```{r mrb14b}
+plot_confronto_gruppi("14", "")
+```
+
+## Quali elementi dovrebbe presentare l'MRB?
+
+```{r mrb15a, include = FALSE}
+
+exp_corpus <- VCorpus(VectorSource(datacleaned$`15`))
+exp_corpus <- tm_map(exp_corpus, content_transformer(tolower))
+exp_corpus <- tm_map(exp_corpus, removeWords, stopwords("it"))
+exp_corpus <- tm_map(exp_corpus, removeWords, c("appunto", "quindi", "alcuni", "aspetto", "corso", "modo", "solo", "penso"))
+exp_corpus <- tm_map(exp_corpus, removePunctuation)
+exp_corpus <- tm_map(exp_corpus, stripWhitespace)
+
+
+DTM <- DocumentTermMatrix(exp_corpus)
+freq <- sort(colSums(as.matrix(DTM)), decreasing = TRUE)
+word_freq <- data.frame(word = names(freq), freq = freq)
+
+par(mar=c(0,0,0,0))
+png("../images/wordcloud.png", width = 1000, height = 1000, res = 200)
+wordcloud( exp_corpus, random.order = FALSE, colors = jcolors::jcolors("pal12") )
+dev.off()
+```
+
+```{r mrb15b, echo=FALSE, fig.align = 'center'}
+knitr::include_graphics("../images/wordcloud.png")
+```
+
+## Riterresti utile una tavola rotonda relativa al MRB?
+
+```{r mrb16a}
+plot_frequenze("16", "")
+```
+
+## Riterresti utile una tavola rotonda relativa al MRB?
+
+```{r mrb16b}
+plot_confronto_gruppi("16", "")
+
+```
+
+## 🔑 Collaboration is the key
+
+<br>
+
+::: {style="font-size: 0.75em; text-align: center;"}
+La presentazione e il materiale completo sono disponibili alla pagina del MRB
+:::
+
+![](../images/qr_sito.png){fig-align="center"}
+
+# MATERIALI AGGIUNTIVI<br>(SCREENING)
 
 ## Quali metodi utilizzi nella tua ricerca?
 
@@ -146,39 +402,14 @@ plot_confronto_gruppi("2.5", "Teorico")
 
 ## Hai un account su OSF o altre repository?
 
-```{r scr3a}
-plot_frequenze("3", "")
-```
-
-## Hai un account su OSF o altre repository?
-
 ```{r scr3b}
 plot_confronto_gruppi("3", "")
 ```
 
 ## Hai mai sentito parlare della crisi di replicabilità?
 
-```{r scr4a}
-plot_frequenze("4", "")
-```
-
-## Hai mai sentito parlare della crisi di replicabilità?
-
 ```{r scr4b}
 plot_confronto_gruppi("4", "")
-```
-
-## Se sì, pensi sia un problema rilevante per il progresso scientifico?
-
-```{r scr5a}
-plot_frequenze("5", "")
-```
-
-## Se sì, pensi sia un problema rilevante per il progresso scientifico?
-
-```{r scr5b}
-
-plot_confronto_gruppi("5", "")
 ```
 
 ## Quanto ritieni che questi fattori possano esserne le cause?
@@ -265,24 +496,12 @@ plot_likert_molto("6.7", "Frode")
 plot_likert_gruppi_molto("6.7", "Frode")
 ```
 
-# OPEN SCIENCE
-
-## Hai mai sentito parlare di questa pratica?
-
-```{r os7.1a}
-plot_frequenze("7.1", "Pre-registrazione ipotesi")
-```
+# MATERIALI AGGIUNTIVI<br>(OPEN SCIENCE)
 
 ## Hai mai sentito parlare di questa pratica?
 
 ```{r os7.1b}
 plot_confronto_gruppi("7.1", "Pre-registrazione ipotesi")
-```
-
-## Hai mai sentito parlare di questa pratica?
-
-```{r os7.2a}
-plot_frequenze("7.2", "Pre-registrazione piano di analisi dei dati")
 ```
 
 ## Hai mai sentito parlare di questa pratica?
@@ -293,20 +512,8 @@ plot_confronto_gruppi("7.2", "Pre-registrazione piano di analisi dei dati")
 
 ## Hai mai sentito parlare di questa pratica?
 
-```{r os7.3a}
-plot_frequenze("7.3", "Registered Report")
-```
-
-## Hai mai sentito parlare di questa pratica?
-
 ```{r os7.3b}
 plot_confronto_gruppi("7.3", "Registered Report")
-```
-
-## Hai mai utilizzato questa pratica?
-
-```{r os8.1a}
-plot_frequenze("8.1", "Pre-registrazione ipotesi")
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -317,20 +524,8 @@ plot_confronto_gruppi_2("8.1", "Pre-registrazione ipotesi")
 
 ## Hai mai utilizzato questa pratica?
 
-```{r os8.2a}
-plot_frequenze("8.2", "Pre-registrazione piano di analisi dei dati")
-```
-
-## Hai mai utilizzato questa pratica?
-
 ```{r os8.2b}
 plot_confronto_gruppi_2("8.2", "Pre-registrazione piano di analisi dei dati")
-```
-
-## Hai mai utilizzato questa pratica?
-
-```{r os8.3a}
-plot_frequenze("8.3", "Registered Report")
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -341,20 +536,8 @@ plot_confronto_gruppi_2("8.3", "Registered Report")
 
 ## Hai mai utilizzato questa pratica?
 
-```{r os8.4a}
-plot_frequenze("8.4", "Open Materials")
-```
-
-## Hai mai utilizzato questa pratica?
-
 ```{r os8.4b}
 plot_confronto_gruppi_2("8.4", "Open Materials")
-```
-
-## Hai mai utilizzato questa pratica?
-
-```{r os8.5a}
-plot_frequenze("8.5", "Open Code")
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -365,20 +548,8 @@ plot_confronto_gruppi_2("8.5", "Open Code")
 
 ## Hai mai utilizzato questa pratica?
 
-```{r os8.6a}
-plot_frequenze("8.6", "Open Data")
-```
-
-## Hai mai utilizzato questa pratica?
-
 ```{r os8.6b}
 plot_confronto_gruppi_2("8.6", "Open Data")
-```
-
-## Quanto può contribuire al progresso della tua disciplina questa pratica?
-
-```{r os9.1a}
-plot_likert_molto("9.1", "Pre-registrazione ipotesi")
 ```
 
 ## Quanto può contribuire al progresso della tua disciplina questa pratica?
@@ -389,20 +560,8 @@ plot_likert_gruppi_molto("9.1", "Pre-registrazione ipotesi")
 
 ## Quanto può contribuire al progresso della tua disciplina questa pratica?
 
-```{r os9.2a}
-plot_likert_molto("9.2", "Pre-registrazione piano di analisi dei dati")
-```
-
-## Quanto può contribuire al progresso della tua disciplina questa pratica?
-
 ```{r os9.2b}
 plot_likert_gruppi_molto("9.2", "Pre-registrazione piano di analisi dei dati")
-```
-
-## Quanto può contribuire al progresso della tua disciplina questa pratica?
-
-```{r os9.3a}
-plot_likert_molto("9.3", "Registered Report")
 ```
 
 ## Quanto può contribuire al progresso della tua disciplina questa pratica?
@@ -413,20 +572,8 @@ plot_likert_gruppi_molto("9.3", "Registered Report")
 
 ## Userai questa pratica nel tuo prossimo studio?
 
-```{r os10.1a}
-plot_likert_molto("10.1", "Pre-registrazione ipotesi")
-```
-
-## Userai questa pratica nel tuo prossimo studio?
-
 ```{r os10.1b}
 plot_likert_gruppi_molto("10.1", "Pre-registrazione ipotesi")
-```
-
-## Userai questa pratica nel tuo prossimo studio?
-
-```{r os10.2a}
-plot_likert_molto("10.2", "Pre-registrazione piano di analisi dei dati")
 ```
 
 ## Userai questa pratica nel tuo prossimo studio?
@@ -437,20 +584,8 @@ plot_likert_gruppi_molto("10.2", "Pre-registrazione piano di analisi dei dati")
 
 ## Userai questa pratica nel tuo prossimo studio?
 
-```{r os10.3a}
-plot_likert_molto("10.3", "Open Materials")
-```
-
-## Userai questa pratica nel tuo prossimo studio?
-
 ```{r os10.3b}
 plot_likert_gruppi_molto("10.3", "Open Materials")
-```
-
-## Userai questa pratica nel tuo prossimo studio?
-
-```{r os10.4a}
-plot_likert_molto("10.4", "Open Code")
 ```
 
 ## Userai questa pratica nel tuo prossimo studio?
@@ -461,34 +596,16 @@ plot_likert_gruppi_molto("10.4", "Open Code")
 
 ## Userai questa pratica nel tuo prossimo studio?
 
-```{r os10.5a}
-plot_likert_molto("10.5", "Open Data")
-```
-
-## Userai questa pratica nel tuo prossimo studio?
-
 ```{r os10.5b}
 plot_likert_gruppi_molto("10.5", "Open Data")
 ```
 
-# METHODOLOGICAL<br>REVIEW BOARD
-
-## Con chi ti confronti sulla parte metodologica?
-
-```{r mrb11.1a}
-plot_frequenze("11.1", "Qualcuno del gruppo di ricerca")
-```
+# MATERIALI AGGIUNTIVI<br>(MRB)
 
 ## Con chi ti confronti sulla parte metodologica?
 
 ```{r mrb11.1b}
 plot_confronto_gruppi("11.1", "Qualcuno del gruppo di ricerca")
-```
-
-## Con chi ti confronti sulla parte metodologica?
-
-```{r mrb11.2a}
-plot_frequenze("11.2", "Esperto esterno, poi inserito come co-autore")
 ```
 
 ## Con chi ti confronti sulla parte metodologica?
@@ -499,20 +616,8 @@ plot_confronto_gruppi("11.2", "Esperto esterno, poi inserito come co-autore")
 
 ## Con chi ti confronti sulla parte metodologica?
 
-```{r mrb11.3a}
-plot_frequenze("11.3", "Esperto esterno, non inserito come co-autore ")
-```
-
-## Con chi ti confronti sulla parte metodologica?
-
 ```{r mrb11.3b}
 plot_confronto_gruppi("11.3", "Esperto esterno, non inserito come co-autore")
-```
-
-## Quanto senti di aver bisogno di aiuto nel pre-registrare?
-
-```{r mrb12.1a}
-plot_likert_completamente("12.1", "")
 ```
 
 ## Quanto senti di aver bisogno di aiuto nel pre-registrare?
@@ -523,20 +628,8 @@ plot_likert_gruppi_completamente("12.1", "")
 
 ## Quanto ti sentiresti più sicuro a pre-registrare dopo un confronto con il MRB?
 
-```{r mrb12.2a}
-plot_likert_completamente("12.2", "")
-```
-
-## Quanto ti sentiresti più sicuro a pre-registrare dopo un confronto con il MRB?
-
 ```{r mrb12.2b}
 plot_likert_gruppi_completamente("12.2", "")
-```
-
-## Quanto ritieni l'MRB utile a
-
-```{r mrb13.1a}
-plot_likert_completamente("13.1", "Essere un riferimento per l'ambito metodologico")
 ```
 
 ## Quanto ritieni l'MRB utile a
@@ -547,20 +640,8 @@ plot_likert_gruppi_completamente("13.1", "Essere un riferimento per l'ambito met
 
 ## Quanto ritieni l'MRB utile a
 
-```{r mrb13.2a}
-plot_likert_completamente("13.2", "Promuovere collaborazioni")
-```
-
-## Quanto ritieni l'MRB utile a
-
 ```{r mrb13.2b}
 plot_likert_gruppi_completamente("13.2", "Promuovere collaborazioni")
-```
-
-## Quanto ritieni l'MRB utile a
-
-```{r mrb13.3a}
-plot_likert_completamente("13.3", "Prevenire sprechi di risorse")
 ```
 
 ## Quanto ritieni l'MRB utile a
@@ -571,97 +652,12 @@ plot_likert_gruppi_completamente("13.3", "Prevenire sprechi di risorse")
 
 ## Quanto ritieni l'MRB utile a
 
-```{r mrb13.4a}
-plot_likert_completamente("13.4", "Migliorare la qualità della ricerca")
-```
-
-## Quanto ritieni l'MRB utile a
-
 ```{r mrb13.4b}
 plot_likert_gruppi_completamente("13.4", "Migliorare la qualità della ricerca")
 ```
 
 ## Quanto ritieni l'MRB utile a
 
-```{r mrb13.5a}
-plot_likert_completamente("13.5", "Migliorare la qualità della ricerca")
-```
-
-## Quanto ritieni l'MRB utile a
-
 ```{r mrb13.5b}
 plot_likert_gruppi_completamente("13.5", "Migliorare la qualità della ricerca")
-```
-
-## Il MRB dovrebbe essere integrato al Comitato Etico?
-
-```{r mrb14a}
-plot_frequenze("14", "")
-```
-
-## Il MRB dovrebbe essere integrato al Comitato Etico?
-
-```{r mrb14b}
-plot_confronto_gruppi("14", "")
-```
-
-## Quali elementi dovrebbe presentare l'MRB?
-
-```{r mrb15a, include = FALSE}
-
-exp_corpus <- VCorpus(VectorSource(datacleaned$`15`))
-exp_corpus <- tm_map(exp_corpus, content_transformer(tolower))
-exp_corpus <- tm_map(exp_corpus, removeWords, stopwords("it"))
-exp_corpus <- tm_map(exp_corpus, removeWords, c("appunto", "quindi", "alcuni", "aspetto", "corso", "modo", "solo", "penso"))
-exp_corpus <- tm_map(exp_corpus, removePunctuation)
-exp_corpus <- tm_map(exp_corpus, stripWhitespace)
-
-
-DTM <- DocumentTermMatrix(exp_corpus)
-freq <- sort(colSums(as.matrix(DTM)), decreasing = TRUE)
-word_freq <- data.frame(word = names(freq), freq = freq)
-
-par(mar=c(0,0,0,0))
-png("../images/wordcloud.png", width = 1000, height = 1000, res = 200)
-wordcloud( exp_corpus, random.order = FALSE, colors = jcolors::jcolors("pal12") )
-dev.off()
-```
-
-```{r mrb15b, echo=FALSE, fig.align = 'center'}
-knitr::include_graphics("../images/wordcloud.png")
-```
-
-## Riterresti utile una tavola rotonda relativa al MRB?
-
-```{r mrb16a}
-plot_frequenze("16", "")
-```
-
-## Riterresti utile una tavola rotonda relativa al MRB?
-
-```{r mrb16b}
-plot_confronto_gruppi("16", "")
-
-```
-
-## 🔑 Collaboration is the key
-
-<br>
-
-::: {style="font-size: 0.75em; text-align: center;"}
-La presentazione e il materiale completo sono disponibili alla pagina del MRB
-:::
-
-![](../images/qr_sito.png){fig-align="center"}
-
-```{r copia}
-html_source <- here::here("results/analysis/data_analysis.html")
-html_dest <- here::here("docs/data_analysis.html")
-
-if (file.exists(html_source)) {
-  file.copy(html_source, html_dest, overwrite = TRUE)
-  message("✅ HTML copiato in docs/data_analysis.html per GitHub Pages.")
-} else {
-  warning("⚠️ HTML NON trovato: ", html_source)
-}
 ```

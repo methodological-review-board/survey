@@ -56,6 +56,9 @@ plot_frequenze <- function(colonna, titolo) {
   freq_table$Percentuale <- (freq_table$Frequenza / sum(freq_table$Frequenza)) * 100
   N <- sum(freq_table$Frequenza)
   
+  max_y <- max(freq_table$Percentuale) + 7
+  limite_y <- max(100, max_y)
+  
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
     geom_col(width = 0.7, fill = "#89BFEA", show.legend = FALSE) +
     geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 6) +
@@ -65,13 +68,13 @@ plot_frequenze <- function(colonna, titolo) {
       x = "Risposta",
       y = "Percentuale"
     ) +
-    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
+    scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, limite_y)) +
     theme_minimal(base_size = 13) +
     theme(
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
       axis.title.x = element_text(face = "bold"),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 30, r = 10, b = 10, l = 10)
     )
 }
 
