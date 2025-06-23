@@ -51,6 +51,19 @@ plot_frequenze <- function(colonna, titolo) {
     return(NULL)
   }
   
+  if("No, mai" %in% names(table(dati_filtrati[[colonna]]))){
+    mappa_likert <- c(
+      "No, mai" = "No, mai",
+      "Sì, ma non l'ho gestito personalmente" = "Sì, ma non l'ho gestito personalmente",
+      "Sì, l'ho gestito personalmente" = "Sì, l'ho gestito personalmente"
+    )
+    dati_raggruppati <- mappa_likert[as.character(dati_filtrati[[colonna]])]
+    dati_raggruppati <- dati_raggruppati[!is.na(dati_raggruppati) & dati_raggruppati != ""]
+    
+    livelli_ordinati <- c("No, mai", "Sì, ma non l'ho gestito personalmente", "Sì, l'ho gestito personalmente")
+    dati_filtrati[[colonna]] <- factor(dati_raggruppati, levels = livelli_ordinati, ordered = TRUE)
+  }
+  
   freq_table <- as.data.frame(table(Risposta = dati_filtrati[[colonna]]))
   colnames(freq_table)[2] <- "Frequenza"
   freq_table$Percentuale <- (freq_table$Frequenza / sum(freq_table$Frequenza)) * 100
@@ -73,10 +86,11 @@ plot_frequenze <- function(colonna, titolo) {
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 13),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 30, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 30, r = 10, b = 10, l = 10),
+      panel.grid.minor=element_blank()
     )
 }
 
@@ -110,7 +124,7 @@ plot_likert_molto <- function(colonna, titolo) {
       title = titolo,
       subtitle = paste("N =", N),
       x = "Risposta",
-      y = "Percentuale"
+      y = "%"
     ) +
     scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
@@ -118,10 +132,11 @@ plot_likert_molto <- function(colonna, titolo) {
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 17, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 13),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 20, r = 10, b = 10, l = 10),
+      panel.grid.minor=element_blank()
     )
 }
 
@@ -155,7 +170,7 @@ plot_likert_completamente <- function(colonna, titolo) {
       title = titolo,
       subtitle = paste("N =", N),
       x = "Risposta",
-      y = "Percentuale"
+      y = "%"
     ) +
     scale_x_discrete(drop = FALSE, limits = livelli_ordinati) +
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
@@ -163,10 +178,11 @@ plot_likert_completamente <- function(colonna, titolo) {
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 17, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 13),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 20, r = 10, b = 10, l = 10),
+      panel.grid.minor=element_blank()
     )
 }
 
@@ -209,10 +225,11 @@ plot_tasso_risposta <- function(totali_strutturati, totali_non_strutturati, tito
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 15),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 20, r = 10, b = 10, l = 10),
+      panel.grid.minor=element_blank()
     )
 }
 
@@ -259,12 +276,13 @@ plot_demografiche <- function(colonna, titolo) {
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 13),
       axis.title.y = element_text(face = "bold"),
       legend.position = "right",
       legend.text = element_text(size = 11),
-      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 20, r = 10, b = 10, l = 10),
+      panel.grid.minor=element_blank()
     )
 }
 
@@ -310,10 +328,11 @@ plot_confronto_gruppi <- function(colonna, titolo) {
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 13),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 20, r = 10, b = 10, l = 10),
+      panel.grid.minor=element_blank()
     )
 }
 
@@ -372,10 +391,11 @@ plot_confronto_gruppi_2 <- function(colonna, titolo) {
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 13),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 25, r = 15, b = 15, l = 15)
+      plot.margin = margin(t = 25, r = 15, b = 15, l = 15),
+      panel.grid.minor=element_blank()
     )
 }
     
@@ -425,10 +445,11 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 13),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
+      plot.margin = margin(t = 20, r = 10, b = 10, l = 10),
+      panel.grid.minor=element_blank()
     )
 }
     
@@ -479,9 +500,10 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
     theme(
       text=element_text(size=25),
       axis.title.x=element_blank(),
-      plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      plot.subtitle = element_text(face = "bold", size = 12),
+      plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+      plot.subtitle = element_text(face = "bold", size = 13),
       axis.title.y = element_text(face = "bold"),
-      plot.margin = margin(t = 25, r = 15, b = 15, l = 15)
+      plot.margin = margin(t = 25, r = 15, b = 15, l = 15),
+      panel.grid.minor=element_blank()
     )
 }

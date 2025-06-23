@@ -126,40 +126,43 @@ plot_frequenze("7.3", "Registered Report")
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.1a}
-plot_frequenze("8.1", "Pre-registrazione ipotesi")+
-  scale_x_discrete(labels=c("No","Sì, l'ho \ngestito personalmente","Sì, ma non l'ho \ngestito personalmente"))
+plot_frequenze("8.1", "Pre-registrazione ipotesi") +
+  scale_x_discrete(labels=c("No","Sì, ma non l'ho \ngestito personalmente","Sì, l'ho gestito \npersonalmente"))
 ```
 
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.2a}
-plot_frequenze("8.2", "Pre-registrazione piano di analisi dei dati")+
-  scale_x_discrete(labels=c("No","Sì, l'ho \ngestito personalmente","Sì, ma non l'ho \ngestito personalmente"))
+plot_frequenze("8.2", "Pre-registrazione piano di analisi dei dati") +
+  scale_x_discrete(labels=c("No","Sì, ma non l'ho \ngestito personalmente","Sì, l'ho gestito \npersonalmente"))
 ```
 
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.3a}
-plot_frequenze("8.3", "Registered Report")+
-  scale_x_discrete(labels=c("No","Sì, l'ho \ngestito personalmente","Sì, ma non l'ho \ngestito personalmente"))
+plot_frequenze("8.3", "Registered Report") +
+  scale_x_discrete(labels=c("No","Sì, ma non l'ho \ngestito personalmente","Sì, l'ho gestito \npersonalmente"))
 ```
 
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.4a}
-plot_frequenze("8.4", "Open Materials")
+plot_frequenze("8.4", "Open Materials") +
+  scale_x_discrete(labels=c("No","Sì, ma non l'ho \ngestito personalmente","Sì, l'ho gestito \npersonalmente"))
 ```
 
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.5a}
-plot_frequenze("8.5", "Open Code")
+plot_frequenze("8.5", "Open Code") +
+  scale_x_discrete(labels=c("No","Sì, ma non l'ho \ngestito personalmente","Sì, l'ho gestito \npersonalmente"))
 ```
 
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.6a}
-plot_frequenze("8.6", "Open Data")
+plot_frequenze("8.6", "Open Data") +
+  scale_x_discrete(labels=c("No","Sì, ma non l'ho \ngestito personalmente","Sì, l'ho gestito \npersonalmente"))
 ```
 
 ## Quanto può contribuire al progresso della tua disciplina questa pratica?
