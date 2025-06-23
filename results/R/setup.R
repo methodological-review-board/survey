@@ -215,7 +215,7 @@ plot_tasso_risposta <- function(totali_strutturati, totali_non_strutturati, tito
     geom_text(aes(label = paste0("n=", Risposte)), vjust = -0.4, size = 4.5) +
     labs(
       title = titolo,
-      subtitle = paste("Totali: Strutturati =", totali_strutturati, ", Non-strutturati =", totali_non_strutturati),
+      subtitle = paste("Totali: Strutturati DPSS =", totali_strutturati, ", Non-strutturati DPSS =", totali_non_strutturati),
       x = "Gruppo",
       y = "% risposte"
     ) +
