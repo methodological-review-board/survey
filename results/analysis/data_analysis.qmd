@@ -9,6 +9,7 @@ format:
     footer: "Tavola Rotonda 27 giugno 2025"
     theme: simple
     output-file: "data_analysis.html"
+toc: false
 execute:
   cache: false
   freeze: false
@@ -102,13 +103,6 @@ plot_frequenze("4", "")
 plot_frequenze("5", "")
 ```
 
-## Se sì, pensi sia un problema rilevante per il progresso scientifico?
-
-```{r scr5b}
-
-plot_confronto_gruppi("5", "")
-```
-
 # OPEN SCIENCE
 
 ## Hai mai sentito parlare di questa pratica?
@@ -132,19 +126,22 @@ plot_frequenze("7.3", "Registered Report")
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.1a}
-plot_frequenze("8.1", "Pre-registrazione ipotesi")
+plot_frequenze("8.1", "Pre-registrazione ipotesi")+
+  scale_x_discrete(labels=c("No","Sì, l'ho \ngestito personalmente","Sì, ma non l'ho \ngestito personalmente"))
 ```
 
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.2a}
-plot_frequenze("8.2", "Pre-registrazione piano di analisi dei dati")
+plot_frequenze("8.2", "Pre-registrazione piano di analisi dei dati")+
+  scale_x_discrete(labels=c("No","Sì, l'ho \ngestito personalmente","Sì, ma non l'ho \ngestito personalmente"))
 ```
 
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.3a}
-plot_frequenze("8.3", "Registered Report")
+plot_frequenze("8.3", "Registered Report")+
+  scale_x_discrete(labels=c("No","Sì, l'ho \ngestito personalmente","Sì, ma non l'ho \ngestito personalmente"))
 ```
 
 ## Hai mai utilizzato questa pratica?
@@ -281,12 +278,6 @@ plot_likert_completamente("13.5", "Promuovere la diffusione di buone pratiche di
 plot_frequenze("14", "")
 ```
 
-## Il MRB dovrebbe essere integrato al Comitato Etico?
-
-```{r mrb14b}
-plot_confronto_gruppi("14", "")
-```
-
 ## Quali elementi dovrebbe presentare l'MRB?
 
 ```{r mrb15a, include = FALSE}
@@ -311,19 +302,6 @@ dev.off()
 
 ```{r mrb15b, echo=FALSE, fig.align = 'center'}
 knitr::include_graphics("../images/wordcloud.png")
-```
-
-## Riterresti utile una tavola rotonda relativa al MRB?
-
-```{r mrb16a}
-plot_frequenze("16", "")
-```
-
-## Riterresti utile una tavola rotonda relativa al MRB?
-
-```{r mrb16b}
-plot_confronto_gruppi("16", "")
-
 ```
 
 ## 🔑 Collaboration is the key
@@ -493,6 +471,12 @@ plot_likert_molto("6.7", "Frode")
 ```{r scr6.7b}
 plot_likert_gruppi_molto("6.7", "Frode")
 ```
+## Se sì, pensi sia un problema rilevante per il progresso scientifico?
+
+```{r scr5b}
+
+plot_confronto_gruppi("5", "")
+```
 
 # MATERIALI AGGIUNTIVI<br>(OPEN SCIENCE)
 
@@ -648,6 +632,12 @@ plot_likert_gruppi_completamente("13.2", "Promuovere collaborazioni")
 plot_likert_gruppi_completamente("13.3", "Prevenire sprechi di risorse")
 ```
 
+## Il MRB dovrebbe essere integrato al Comitato Etico?
+
+```{r mrb14b}
+plot_confronto_gruppi("14", "")
+```
+
 ## Quanto ritieni l'MRB utile a
 
 ```{r mrb13.4b}
@@ -658,4 +648,16 @@ plot_likert_gruppi_completamente("13.4", "Migliorare la qualità della ricerca")
 
 ```{r mrb13.5b}
 plot_likert_gruppi_completamente("13.5", "Migliorare la qualità della ricerca")
+```
+
+## Riterresti utile una tavola rotonda relativa al MRB?
+
+```{r mrb16a}
+plot_frequenze("16", "")
+```
+
+## Riterresti utile una tavola rotonda relativa al MRB?
+
+```{r mrb16b}
+plot_confronto_gruppi("16", "")
 ```

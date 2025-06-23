@@ -66,13 +66,15 @@ plot_frequenze <- function(colonna, titolo) {
       title = titolo,
       subtitle = paste("N =", N),
       x = "Risposta",
-      y = "Percentuale"
+      y = "%"
     ) +
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, limite_y)) +
     theme_minimal(base_size = 13) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       plot.margin = margin(t = 30, r = 10, b = 10, l = 10)
     )
@@ -114,8 +116,10 @@ plot_likert_molto <- function(colonna, titolo) {
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
     theme_minimal(base_size = 15) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 17, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
@@ -157,8 +161,10 @@ plot_likert_completamente <- function(colonna, titolo) {
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
     theme_minimal(base_size = 15) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 17, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
@@ -195,14 +201,16 @@ plot_tasso_risposta <- function(totali_strutturati, totali_non_strutturati, tito
       title = titolo,
       subtitle = paste("Totali: Strutturati =", totali_strutturati, ", Non-strutturati =", totali_non_strutturati),
       x = "Gruppo",
-      y = "Percentuale di risposta"
+      y = "% risposte"
     ) +
     scale_fill_manual(values = colori) +
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, 100)) +
     theme_minimal(base_size = 13) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
@@ -229,8 +237,8 @@ plot_demografiche <- function(colonna, titolo) {
   
   colori <- c("Strutturati" = "#4EB9BA", "Non-strutturati" = "#EF7D81")
   etichette_legenda <- c(
-    "Strutturati" = "Strutturati = PO, PA, RTD, RTT",
-    "Non-strutturati" = "Non strutturati = Dottorato, assegno di ricerca"
+    "Strutturati" = "Strutturati = \nPO, PA, RTD, RTT",
+    "Non-strutturati" = "Non strutturati = \nDottorato, assegno di ricerca"
   )
   
   ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
@@ -241,15 +249,18 @@ plot_demografiche <- function(colonna, titolo) {
       title = titolo,
       subtitle = paste("N =", N),
       x = "Risposta",
-      y = "Percentuale",
+      y = "%",
       fill = NULL
     ) +
     scale_fill_manual(values = colori, labels = etichette_legenda) +
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, max(100, max_y))) +
+    scale_x_discrete(labels=c("Dottorato, \nassegno di ricerca","PO, PA, \nRTD, RTT"))+
     theme_minimal(base_size = 13) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       legend.position = "right",
       legend.text = element_text(size = 11),
@@ -292,13 +303,15 @@ plot_confronto_gruppi <- function(colonna, titolo) {
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
       x = "Gruppo",
-      y = "Percentuale",
+      y = "%",
       fill = "Risposta"
     ) +
     theme_minimal(base_size = 13) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
@@ -313,16 +326,16 @@ plot_confronto_gruppi_2 <- function(colonna, titolo) {
   
   risposta_map <- c(
     "No, mai" = "No, mai",
-    "Sì, ma non l'ho gestito personalmente" = "Sì, ma non l'ho gestito personalmente",
-    "Sì, l'ho gestito personalmente" = "Sì, l'ho gestito personalmente"
+    "Sì, ma non l'ho gestito personalmente" = "Sì, ma non l'ho \ngestito personalmente",
+    "Sì, l'ho gestito personalmente" = "Sì, l'ho \ngestito personalmente"
   )
   dati_filtrati$Risposta <- risposta_map[as.character(dati_filtrati[[colonna]])]
   dati_filtrati <- dati_filtrati[!is.na(dati_filtrati$Risposta), ]
   
   livelli_ordinati <- c(
     "No, mai",
-    "Sì, ma non l'ho gestito personalmente",
-    "Sì, l'ho gestito personalmente"
+    "Sì, ma non l'ho \ngestito personalmente",
+    "Sì, l'ho \ngestito personalmente"
   )
   dati_filtrati$Risposta <- factor(dati_filtrati$Risposta, levels = livelli_ordinati)
   
@@ -335,8 +348,8 @@ plot_confronto_gruppi_2 <- function(colonna, titolo) {
   
   colori_risposta <- c(
     "No, mai" = "#E57373",
-    "Sì, ma non l'ho gestito personalmente" = "#F4A261",
-    "Sì, l'ho gestito personalmente" = "#81C784"
+    "Sì, ma non l'ho \ngestito personalmente" = "#F4A261",
+    "Sì, l'ho \ngestito personalmente" = "#81C784"
   )
   
   max_percentuale <- max(freq_table$Percentuale)
@@ -351,14 +364,16 @@ plot_confronto_gruppi_2 <- function(colonna, titolo) {
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
       x = "Gruppo",
-      y = "Percentuale",
+      y = "%",
       fill = "Risposta"
     ) +
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, limite_y)) +
     theme_minimal(base_size = 13) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       plot.margin = margin(t = 25, r = 15, b = 15, l = 15)
     )
@@ -403,13 +418,15 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
       x = "Gruppo",
-      y = "Percentuale",
+      y = "%",
       fill = "Risposta"
     ) +
     theme_minimal(base_size = 13) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       plot.margin = margin(t = 20, r = 10, b = 10, l = 10)
     )
@@ -454,14 +471,16 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
       title = titolo,
       subtitle = paste("N =", sum(freq_table$Frequenza)),
       x = "Gruppo",
-      y = "Percentuale",
+      y = "%",
       fill = "Risposta"
     ) +
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, limite_y)) +
     theme_minimal(base_size = 13) +
     theme(
+      text=element_text(size=25),
+      axis.title.x=element_blank(),
       plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
-      axis.title.x = element_text(face = "bold"),
+      plot.subtitle = element_text(face = "bold", size = 12),
       axis.title.y = element_text(face = "bold"),
       plot.margin = margin(t = 25, r = 15, b = 15, l = 15)
     )
