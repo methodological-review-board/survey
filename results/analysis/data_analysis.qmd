@@ -239,7 +239,7 @@ plot_frequenze("11.3", "Esperto esterno, non inserito come co-autore ")
 plot_likert_completamente("12.1", "")
 ```
 
-## Quanto ti sentiresti più sicuro a pre-registrare dopo un confronto con il MRB?
+## Quanto ti sentiresti più sicura/o a pre-registrare dopo un confronto con il MRB?
 
 ```{r mrb12.2a}
 plot_likert_completamente("12.2", "")
@@ -272,7 +272,7 @@ plot_likert_completamente("13.4", "Migliorare la qualità della ricerca")
 ## Quanto ritieni l'MRB utile a
 
 ```{r mrb13.5a}
-plot_likert_completamente("13.5", "Migliorare la qualità della ricerca")
+plot_likert_completamente("13.5", "Promuovere la diffusione di buone pratiche di ricerca")
 ```
 
 ## Il MRB dovrebbe essere integrato al Comitato Etico?
