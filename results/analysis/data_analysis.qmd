@@ -105,24 +105,6 @@ plot_frequenze("5", "")
 
 # OPEN SCIENCE
 
-## Hai mai sentito parlare di questa pratica?
-
-```{r os7.1a}
-plot_frequenze("7.1", "Pre-registrazione ipotesi")
-```
-
-## Hai mai sentito parlare di questa pratica?
-
-```{r os7.2a}
-plot_frequenze("7.2", "Pre-registrazione piano di analisi dei dati")
-```
-
-## Hai mai sentito parlare di questa pratica?
-
-```{r os7.3a}
-plot_frequenze("7.3", "Registered Report")
-```
-
 ## Hai mai utilizzato questa pratica?
 
 ```{r os8.1a}
@@ -482,6 +464,25 @@ plot_confronto_gruppi("5", "")
 ```
 
 # MATERIALI AGGIUNTIVI<br>(OPEN SCIENCE)
+
+## Hai mai sentito parlare di questa pratica?
+
+```{r os7.1a}
+plot_frequenze("7.1", "Pre-registrazione ipotesi")
+```
+
+## Hai mai sentito parlare di questa pratica?
+
+```{r os7.2a}
+plot_frequenze("7.2", "Pre-registrazione piano di analisi dei dati")
+```
+
+## Hai mai sentito parlare di questa pratica?
+
+```{r os7.3a}
+plot_frequenze("7.3", "Registered Report")
+```
+
 
 ## Hai mai sentito parlare di questa pratica?
 

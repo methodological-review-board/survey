@@ -74,7 +74,7 @@ plot_frequenze <- function(colonna, titolo) {
   
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
     geom_col(width = 0.7, fill = "#89BFEA", show.legend = FALSE) +
-    geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 6) +
+    geom_text(aes(label = paste0("n = ", Frequenza)), vjust = -0.4, size = 6) +
     labs(
       title = titolo,
       subtitle = paste("N =", N),
@@ -119,7 +119,7 @@ plot_likert_molto <- function(colonna, titolo) {
   
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
     geom_col(width = 0.7, fill = "#89BFEA", show.legend = FALSE) +
-    geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 5.2) +
+    geom_text(aes(label = paste0("n = ", Frequenza)), vjust = -0.4, size = 5.2) +
     labs(
       title = titolo,
       subtitle = paste("N =", N),
@@ -165,7 +165,7 @@ plot_likert_completamente <- function(colonna, titolo) {
   
   ggplot(freq_table, aes(x = Risposta, y = Percentuale)) +
     geom_col(width = 0.7, fill = "#89BFEA", show.legend = FALSE) +
-    geom_text(aes(label = paste0("n=", Frequenza)), vjust = -0.4, size = 5.2) +
+    geom_text(aes(label = paste0("n = ", Frequenza)), vjust = -0.4, size = 5.2) +
     labs(
       title = titolo,
       subtitle = paste("N =", N),
@@ -212,7 +212,7 @@ plot_tasso_risposta <- function(totali_strutturati, totali_non_strutturati, tito
   
   ggplot(df, aes(x = Gruppo, y = Percentuale, fill = Gruppo)) +
     geom_col(width = 0.7) +
-    geom_text(aes(label = paste0("n=", Risposte)), vjust = -0.4, size = 4.5) +
+    geom_text(aes(label = paste0("n = ", Risposte)), vjust = -0.4, size = 4.5) +
     labs(
       title = titolo,
       subtitle = paste("Totali: Strutturati DPSS =", totali_strutturati, ", Non-strutturati DPSS =", totali_non_strutturati),
@@ -260,7 +260,7 @@ plot_demografiche <- function(colonna, titolo) {
   
   ggplot(freq_table, aes(x = Risposta, y = Percentuale, fill = Gruppo)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
-    geom_text(aes(label = paste0("n=", Frequenza)),
+    geom_text(aes(label = paste0("n = ", Frequenza)),
               position = position_dodge(width = 0.8), vjust = -0.4, size = 5) +
     labs(
       title = titolo,
@@ -313,7 +313,7 @@ plot_confronto_gruppi <- function(colonna, titolo) {
   
   ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
     geom_col(position = position_dodge(width = 0.7), width = 0.6) +
-    geom_text(aes(label = paste0("n=", Frequenza)),
+    geom_text(aes(label = paste0("n = ", Frequenza)),
               position = position_dodge(width = 0.7), vjust = -0.5, size = 4.5) +
     scale_fill_manual(values = colori_risposta) +
     scale_y_continuous(limits = c(0, max_y), breaks = seq(0, 100, by = 10)) +
@@ -376,7 +376,7 @@ plot_confronto_gruppi_2 <- function(colonna, titolo) {
   
   ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
-    geom_text(aes(label = paste0("n=", Frequenza)),
+    geom_text(aes(label = paste0("n = ", Frequenza)),
               position = position_dodge(width = 0.8), vjust = -0.5, size = 5) +
     scale_fill_manual(values = colori_risposta, breaks = livelli_ordinati) +
     labs(
@@ -430,7 +430,7 @@ plot_likert_gruppi_molto <- function(colonna, titolo) {
   
   ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
-    geom_text(aes(label = paste0("n=", Frequenza)),
+    geom_text(aes(label = paste0("n = ", Frequenza)),
               position = position_dodge(width = 0.8), vjust = -0.5, size = 5) +
     scale_fill_manual(values = colori_risposta) +
     scale_y_continuous(breaks = seq(0, 100, by = 10), limits = c(0, max_y)) +
@@ -485,7 +485,7 @@ plot_likert_gruppi_completamente <- function(colonna, titolo) {
   
   ggplot(freq_table, aes(x = Gruppo, y = Percentuale, fill = Risposta)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
-    geom_text(aes(label = paste0("n=", Frequenza)),
+    geom_text(aes(label = paste0("n = ", Frequenza)),
               position = position_dodge(width = 0.8), vjust = -0.5, size = 5) +
     scale_fill_manual(values = colori_risposta) +
     labs(
