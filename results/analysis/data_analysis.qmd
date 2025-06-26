@@ -289,6 +289,12 @@ dev.off()
 knitr::include_graphics("../images/wordcloud.png")
 ```
 
+::: {style="font-size: 0.50em; text-align: center;"}
+Le risposte a questo item facoltativo sono state fornite da 27 partecipanti su un totale di 53.
+:::
+
+<br>
+
 ## 🔑 Collaboration is the key
 
 <br>
